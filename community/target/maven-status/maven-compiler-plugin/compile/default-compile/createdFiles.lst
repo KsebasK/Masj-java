@@ -1,0 +1,12 @@
+logica\Usuario.class
+com\masj\community\resources\JavaEE8Resource.class
+persistencias\UsuarioJpaController.class
+logica\Controladora.class
+persistencias\ControladoraPersistencia.class
+Servlets\SvEditar.class
+Servlets\SvUsuario.class
+com\masj\community\JAXRSConfiguration.class
+persistencia\exceptions\NonexistentEntityException.class
+persistencia\exceptions\PreexistingEntityException.class
+Servlets\SvEliminar.class
+persistencia\exceptions\IllegalOrphanException.class
