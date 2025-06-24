@@ -35,17 +35,19 @@ public class Controladora {
     public Usuario traerUsuarios(int idEditar) {
          return controlPersis.traerUsuario(idEditar); }
     
-    public Usuario validarUsuario(String correo, String contrasena) {
-    List<Usuario> usuarios = controlPersis.traerUsuarios();
 
-    for (Usuario usu : usuarios) {
-        if (usu.getCorreoElectronico().equalsIgnoreCase(correo) &&
-            usu.getContrasena().equals(contrasena)) {
-            return usu;
+
+    public Usuario validarLogin(String correo, String contrasena) {
+    List<Usuario> usuarios = controlPersis.traerUsuarios();
+    for (Usuario u : usuarios) {
+        if (u.getCorreoElectronico().equalsIgnoreCase(correo) &&
+            u.getContrasena().equals(contrasena)) {
+            return u;
         }
     }
     return null;
 }
+
 
     
 }

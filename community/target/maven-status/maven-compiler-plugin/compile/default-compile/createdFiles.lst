@@ -4,6 +4,7 @@ persistencias\UsuarioJpaController.class
 logica\Controladora.class
 persistencias\ControladoraPersistencia.class
 Servlets\SvEditar.class
+Servlets\SvLogin.class
 Servlets\SvUsuario.class
 com\masj\community\JAXRSConfiguration.class
 persistencia\exceptions\NonexistentEntityException.class

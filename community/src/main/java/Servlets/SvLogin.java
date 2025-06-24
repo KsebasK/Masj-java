@@ -14,26 +14,23 @@ public class SvLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
-
-        String correo = request.getParameter("correoElectronico");
+        String correo = request.getParameter("correo");
         String contrasena = request.getParameter("contrasena");
 
-        Usuario usuarioEncontrado = control.validarUsuario(correo, contrasena);
+        Usuario usu = control.validarLogin(correo, contrasena);
 
-        if (usuarioEncontrado != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("usuarioLogueado", usuarioEncontrado);
+        if (usu != null) {
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("usuario", usu);
 
-            String rol = usuarioEncontrado.getRol().toLowerCase();
+            String rol = usu.getRol().toLowerCase();
 
             switch (rol) {
                 case "administrador":
                     response.sendRedirect("admin.jsp");
                     break;
-                case "residente":
                 case "propietario":
                     response.sendRedirect("residente.jsp");
                     break;
@@ -44,13 +41,13 @@ public class SvLogin extends HttpServlet {
                     response.sendRedirect("arrendatario.jsp");
                     break;
                 default:
-                    // Rol desconocido
-                    response.sendRedirect("login.jsp?error=rol");
-                    break;
+                    request.setAttribute("error", "Rol desconocido.");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
             }
+
         } else {
-            // Usuario no encontrado o datos incorrectos
-            response.sendRedirect("login.jsp?error=datos");
+            request.setAttribute("error", "Correo o contraseña incorrectos.");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }
