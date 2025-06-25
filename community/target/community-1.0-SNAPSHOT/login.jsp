@@ -85,6 +85,7 @@
         <input type="password" id="contrasena" name="contrasena" placeholder="••••••••" required>
 
         <button type="submit">Ingresar</button>
+        <button><a href="index.jsp">Registrar</a></button>
     </form>
 </div>
 

@@ -10,7 +10,7 @@
 
 <h1>Registro de Usuario</h1>
 
-<form action="SvUsuario" method="POST">
+<form action="SvUsuario" method="post">
     <label>Primer Nombre:</label>
     <input type="text" name="primerNombre" required>
 
@@ -32,8 +32,9 @@
     <label>Contraseña:</label>
     <input type="password" name="contrasena" required>
 
-    <label>Nombre del Conjunto:</label>
-    <input type="text" name="conjuntoNombre" required>
+    <select name="conjuntoNombre">
+    <option value="Conjunto Unico">Conjunto Unico</option>
+</select>
 
     <label>Fecha de Nacimiento:</label>
     <input type="date" name="fechaNacimiento" required>
