@@ -3,6 +3,7 @@ com\masj\community\resources\JavaEE8Resource.class
 persistencias\UsuarioJpaController.class
 logica\Controladora.class
 persistencias\ControladoraPersistencia.class
+logica\Usuario_.class
 Servlets\SvEditar.class
 Servlets\SvLogin.class
 Servlets\SvUsuario.class

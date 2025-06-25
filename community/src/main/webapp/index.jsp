@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es" xml:lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Registrar Usuario</title>
