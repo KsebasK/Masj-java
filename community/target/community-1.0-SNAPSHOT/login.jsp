@@ -1,65 +1,64 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(120deg, #007BFF, #6dd5fa);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .card {
-            border-radius: 15px;
-        }
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: none;
-        }
-    </style>
+    <title>Login</title>
+
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/main/webapp/Styles/Login.css">
 </head>
 <body>
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow p-4">
-                <h3 class="text-center text-primary mb-4">Iniciar Sesión</h3>
-
-                <% String error = (String) request.getAttribute("error"); %>
-                <% if (error != null) { %>
-                    <div class="alert alert-danger text-center">
-                        <%= error %>
-                    </div>
-                <% } %>
-
-                <form action="SvLogin" method="POST">
-                    <div class="mb-3">
-                        <label for="correo" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="contrasena" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="••••••••" required>
-                    </div>
-
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Ingresar</button>
-                    </div>
-                </form>
-
-                <p class="mt-3 text-center text-muted" style="font-size: 0.9rem;">¿No tienes cuenta? <a href="index.jsp" class="text-decoration-none">Regístrate aquí</a></p>
-            </div>
-        </div>
+    <div class="background"></div>
+    <div class="circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <div class="lines"></div>
+    <div class="neon-ring"></div>
+    <div class="glow"></div>
+    <div class="MASJ">
+        <div class="letter M">M</div>
+        <div class="letter A">A</div>
+        <div class="letter S">S</div>
+        <div class="letter J">J</div>
     </div>
 </div>
 
-<!-- Bootstrap Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="contenedor">
+    <div class="formulario">
+        <h1 class="ci">Iniciar Sesión</h1>
+
+        <% if (request.getAttribute("status") != null) { %>
+            <div class="alert alert-success" role="alert">
+                <%= request.getAttribute("status") %>
+            </div>
+        <% } %>
+
+        <form action="SvLogin" method="POST">
+            <input type="email" name="correo" id="CorreoElectronico" placeholder="Correo" required>
+            <input type="password" name="contrasena" id="Contraseña" placeholder="Contraseña" required>
+            <a class="contraseña" href="recuperarPassword.jsp">Olvidé mi contraseña</a>
+            <button type="submit" class="enviar">Iniciar Sesión</button>
+        </form>
+
+        <% if (request.getAttribute("error") != null) { %>
+            <p class="error"><%= request.getAttribute("error") %></p>
+        <% } %>
+    </div>
+
+    <div class="registro">
+        <h2 class="cuenta">¿No tienes una cuenta?</h2>
+        <a href="registro.jsp" class="inicia">Regístrate aquí</a>
+    </div>
+</div>
+
 </body>
 </html>
