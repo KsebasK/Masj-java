@@ -46,5 +46,19 @@ public class ControladoraPersistencia {
         Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
+    
+    public Usuario validarUsuario(String correo, String contrasenaEncriptada) {
+    List<Usuario> lista = this.traerUsuarios();
+
+    for (Usuario usu : lista) {
+        if (usu.getCorreoElectronico().equalsIgnoreCase(correo)
+                && usu.getContrasena().equals(contrasenaEncriptada)) {
+            return usu;
+        }
+    }
+
+    return null; // No encontrado
+}
+
 
 }

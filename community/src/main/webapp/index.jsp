@@ -1,97 +1,127 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Registrar Usuario</title>
-   <link rel="stylesheet" href="Styles/index.css"/>
+    <title>Registro de Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 
-<h1>Registro de Usuario</h1>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center text-primary">Registro de Usuario</h1>
 
-<form action="SvUsuario" method="POST">
-    <label>Primer Nombre:</label>
-    <input type="text" name="primerNombre" required>
+    <form action="SvUsuario" method="POST" class="row g-3 bg-white p-4 shadow rounded">
 
-    <label>Segundo Nombre:</label>
-    <input type="text" name="segundoNombre">
+        <div class="col-md-6">
+            <label class="form-label">Primer Nombre:</label>
+            <input type="text" name="primerNombre" class="form-control" required>
+        </div>
 
-    <label>Primer Apellido:</label>
-    <input type="text" name="primerApellido" required>
+        <div class="col-md-6">
+            <label class="form-label">Segundo Nombre:</label>
+            <input type="text" name="segundoNombre" class="form-control">
+        </div>
 
-    <label>Segundo Apellido:</label>
-    <input type="text" name="segundoApellido">
+        <div class="col-md-6">
+            <label class="form-label">Primer Apellido:</label>
+            <input type="text" name="primerApellido" class="form-control" required>
+        </div>
 
-    <label>Número de Celular:</label>
-    <input type="text" name="numeroCelular" required>
+        <div class="col-md-6">
+            <label class="form-label">Segundo Apellido:</label>
+            <input type="text" name="segundoApellido" class="form-control">
+        </div>
 
-    <label>Correo Electrónico:</label>
-    <input type="email" name="correoElectronico" required>
+        <div class="col-md-6">
+            <label class="form-label">Número de Celular:</label>
+            <input type="text" name="numeroCelular" class="form-control" required>
+        </div>
 
-    <label>Contraseña:</label>
-    <input type="password" name="contrasena" required>
+        <div class="col-md-6">
+            <label class="form-label">Correo Electrónico:</label>
+            <input type="email" name="correoElectronico" class="form-control" required>
+        </div>
 
-    <label>Nombre del Conjunto:</label>
-    <input type="text" name="conjuntoNombre" required>
+        <div class="col-md-6">
+            <label class="form-label">Contraseña:</label>
+            <input type="password" name="contrasena" class="form-control" required>
+        </div>
 
-    <label>Fecha de Nacimiento:</label>
-    <input type="date" name="fechaNacimiento" required>
+        <div class="col-md-6">
+            <label class="form-label">Fecha de Nacimiento:</label>
+            <input type="date" name="fechaNacimiento" class="form-control" required>
+        </div>
 
-    <label>Estado:</label>
-    <select name="estado" required>
-        <option value="Activo">Activo</option>
-        <option value="Inactivo">Inactivo</option>
-    </select>
+        <div class="col-md-6">
+            <label class="form-label">Estado:</label>
+            <select name="estado" class="form-select" required>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+            </select>
+        </div>
 
-    <label>Rol:</label>
-    <select name="rol" required>
-        <option value="propietario">Residente</option>
-        <option value="administrador">Administrador</option>
-        <option value="guardia">Guardia</option>
-        <option value="arrendatario">Arrendatario</option>
-    </select>
+        <div class="col-md-6">
+            <label class="form-label">Rol:</label>
+            <select name="rol" class="form-select" required>
+                <option value="propietario">Residente</option>
+                <option value="administrador">Administrador</option>
+                <option value="guardia">Guardia</option>
+                <option value="arrendatario">Arrendatario</option>
+            </select>
+        </div>
 
-    <label>Tipo de Documento:</label>
-    <select name="tipoDocumento" required>
-        <option value="CC">Cédula de Ciudadanía</option>
-        <option value="TI">Tarjeta de Identidad</option>
-        <option value="CE">Cédula de Extranjería</option>
-    </select>
+        <div class="col-md-6">
+            <label class="form-label">Tipo de Documento:</label>
+            <select name="tipoDocumento" class="form-select" required>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="TI">Tarjeta de Identidad</option>
+                <option value="CE">Cédula de Extranjería</option>
+            </select>
+        </div>
 
-    <label>Número de Documento:</label>
-    <input type="number" name="numDocumento" required>
+        <div class="col-md-6">
+            <label class="form-label">Número de Documento:</label>
+            <input type="number" name="numDocumento" class="form-control" required>
+        </div>
 
-    <input type="submit" value="Registrar">
-</form>
-
- <h1>Ver lista de usuarios</h1>
-    <p>Para ver los datos de los usuarios cargados haga click</p>
-    <form action="SvUsuario" method="GET">
-        <button type="submit"> mostrar Usuarios </button> 
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary w-100">Registrar Usuario</button>
+        </div>
     </form>
-    
-<h1>Eliminar Usuario</h1>
-    <p>Ingresa el Id para eliminar usuario</p>
-    <form action="SvEliminar" method="POST">
-  <input type="text" name="idUsuario" placeholder="Escribe el ID">
-  <input type="submit" value="Eliminar">
+
+    <hr class="my-5">
+
+    <!-- Ver usuarios -->
+    <h3>Ver lista de usuarios</h3>
+    <form action="SvUsuario" method="GET" class="mb-3">
+        <button type="submit" class="btn btn-info">Mostrar Usuarios</button>
     </form>
 
-    <h1>Editar Usu</h1>
-    <p>Ingresa el Id para editar Usuario</p>
-    <form action="SvEditar" method="GET">
-  <input type="text" name="idUsuarioEdit" placeholder="Escribe el ID">
-  <input type="submit" value="Editar">
+    <!-- Eliminar usuario -->
+    <h3>Eliminar Usuario</h3>
+    <form action="SvEliminar" method="POST" class="mb-3 row g-2">
+        <div class="col-md-4">
+            <input type="text" name="idUsuario" class="form-control" placeholder="ID del Usuario" required>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
     </form>
-    
-    
 
-
-</form>
-
-</form>
-
+    <!-- Editar usuario -->
+    <h3>Editar Usuario</h3>
+    <form action="SvEditar" method="GET" class="mb-5 row g-2">
+        <div class="col-md-4">
+            <input type="text" name="idUsuarioEdit" class="form-control" placeholder="ID del Usuario" required>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-warning">Editar</button>
+        </div>
     </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

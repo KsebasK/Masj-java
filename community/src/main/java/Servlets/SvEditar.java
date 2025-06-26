@@ -1,48 +1,38 @@
 package Servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import logica.Controladora;
 import logica.Usuario;
 
-/*@author sebastian */
 @WebServlet(name = "SvEditar", urlPatterns = {"/SvEditar"})
 public class SvEditar extends HttpServlet {
-Controladora control = new Controladora();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
-    }
+    Controladora control = new Controladora();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         int idEditar = Integer.parseInt(request.getParameter("idUsuarioEdit"));
-        
-        Usuario usu =  control.traerUsuarios(idEditar);
-        
+
+        Usuario usu = control.traerUsuario(idEditar); // Corregido método correcto
+
         HttpSession sesion = request.getSession();
         sesion.setAttribute("usuEditar", usu);
 
-        
         response.sendRedirect("editar.jsp");
-        
     }
 
-  @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
+        // Obtener parámetros del formulario
         int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
         String primerNombre = request.getParameter("primerNombre");
         String segundoNombre = request.getParameter("segundoNombre");
@@ -50,26 +40,24 @@ Controladora control = new Controladora();
         String segundoApellido = request.getParameter("segundoApellido");
         String numeroCelular = request.getParameter("numeroCelular");
         String correo = request.getParameter("correoElectronico");
-        String conjunto = request.getParameter("conjuntoNombre");
         String fechaNacimiento = request.getParameter("fechaNacimiento");
         String estado = request.getParameter("estado");
         String rol = request.getParameter("rol");
         String tipoDocumento = request.getParameter("tipoDocumento");
         int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
 
-        // Buscar usuario original
+        // Buscar el usuario original
         Usuario usu = control.traerUsuario(idUsuario);
 
-        // Setear los nuevos valores
+        // Setear nuevos valores
         usu.setPrimerNombre(primerNombre);
         usu.setSegundoNombre(segundoNombre);
         usu.setPrimerApellido(primerApellido);
         usu.setSegundoApellido(segundoApellido);
         usu.setNumeroCelular(numeroCelular);
         usu.setCorreoElectronico(correo);
-        usu.setConjuntoNombre(conjunto);
-        usu.setEstado(estado);
-        usu.setRol(rol);
+        usu.setEstado(Usuario.Estado.valueOf(estado));
+        usu.setRol(Usuario.Rol.valueOf(rol));
         usu.setTipoDocumento(tipoDocumento);
         usu.setNumDocumento(numDocumento);
 
@@ -84,16 +72,14 @@ Controladora control = new Controladora();
         // Editar en base de datos
         control.editarUsuario(usu);
 
-        // Redirigir y actualizar la lista
+        // Redirigir con lista actualizada
         HttpSession sesion = request.getSession();
         sesion.setAttribute("listaUsuarios", control.traerUsuarios());
         response.sendRedirect("mostrarUsuarios.jsp");
     }
 
-
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Servlet para editar usuario";
     }
-
 }

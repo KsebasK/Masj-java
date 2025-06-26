@@ -1,3 +1,4 @@
+logica\Usuario$Rol.class
 logica\Usuario.class
 com\masj\community\resources\JavaEE8Resource.class
 persistencias\UsuarioJpaController.class
@@ -6,6 +7,7 @@ persistencias\ControladoraPersistencia.class
 Servlets\SvEditar.class
 Servlets\SvLogin.class
 Servlets\SvUsuario.class
+logica\Usuario$Estado.class
 com\masj\community\JAXRSConfiguration.class
 persistencia\exceptions\NonexistentEntityException.class
 persistencia\exceptions\PreexistingEntityException.class

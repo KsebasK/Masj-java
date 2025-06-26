@@ -4,89 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(120deg, #007BFF, #6dd5fa);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
         }
-
-        .login-container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        .card {
+            border-radius: 15px;
         }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 0.7rem;
-            margin-bottom: 1.2rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #007BFF;
-            color: white;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .error {
-            color: red;
-            text-align: center;
-            margin-bottom: 1rem;
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
         }
     </style>
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Iniciar Sesión</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow p-4">
+                <h3 class="text-center text-primary mb-4">Iniciar Sesión</h3>
 
-    <% String error = (String) request.getAttribute("error"); %>
-    <% if (error != null) { %>
-        <p class="error"><%= error %></p>
-    <% } %>
+                <% String error = (String) request.getAttribute("error"); %>
+                <% if (error != null) { %>
+                    <div class="alert alert-danger text-center">
+                        <%= error %>
+                    </div>
+                <% } %>
 
-    <form action="SvLogin" method="POST">
-        <label for="correo">Correo Electrónico:</label>
-        <input type="text" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                <form action="SvLogin" method="POST">
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                    </div>
 
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" placeholder="••••••••" required>
+                    <div class="mb-4">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="••••••••" required>
+                    </div>
 
-        <button type="submit">Ingresar</button>
-    </form>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Ingresar</button>
+                    </div>
+                </form>
+
+                <p class="mt-3 text-center text-muted" style="font-size: 0.9rem;">¿No tienes cuenta? <a href="index.jsp" class="text-decoration-none">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Bootstrap Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

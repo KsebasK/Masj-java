@@ -2,21 +2,14 @@ package logica;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Usuario")
-public class Usuario implements Serializable{
+@Table(name = "usuario")
+public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario")
     private int idUsuario;
 
@@ -41,18 +34,17 @@ public class Usuario implements Serializable{
     @Column(name = "Contrasena", nullable = false)
     private String contrasena;
 
-    @Column(name = "ConjuntoNombre", nullable = false)
-    private String conjuntoNombre;
-
     @Column(name = "FechaNacimiento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "Estado", nullable = false)
-    private String estado;
+    private Estado estado;
 
-    @Column(name = "Rol", nullable = false)
-    private String rol;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rol", nullable = false)
+    private Rol rol;
 
     @Column(name = "TipoDocumento", nullable = false)
     private String tipoDocumento;
@@ -60,13 +52,24 @@ public class Usuario implements Serializable{
     @Column(name = "NumDocumento", nullable = false)
     private int numDocumento;
 
-    // Constructor vacío (obligatorio para JPA)
+    public enum Rol {
+        propietario, arrendatario, guardia, administrador;
+
+        public String toLowerCase() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    }
+
+    public enum Estado {
+        activo, inactivo
+    }
+
     public Usuario() {}
 
-    // Constructor con todos los campos
     public Usuario(int idUsuario, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-                   String numeroCelular, String correoElectronico, String contrasena, String conjuntoNombre,
-                   Date fechaNacimiento, String estado, String rol, String tipoDocumento, int numDocumento) {
+                   String numeroCelular, String correoElectronico, String contrasena,
+                   Date fechaNacimiento, Estado estado, Rol rol,
+                   String tipoDocumento, int numDocumento) {
         this.idUsuario = idUsuario;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -75,7 +78,6 @@ public class Usuario implements Serializable{
         this.numeroCelular = numeroCelular;
         this.correoElectronico = correoElectronico;
         this.contrasena = contrasena;
-        this.conjuntoNombre = conjuntoNombre;
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
         this.rol = rol;
@@ -83,7 +85,7 @@ public class Usuario implements Serializable{
         this.numDocumento = numDocumento;
     }
 
-    // Getters y Setters
+    // Getters y setters
 
     public int getIdUsuario() {
         return idUsuario;
@@ -149,14 +151,6 @@ public class Usuario implements Serializable{
         this.contrasena = contrasena;
     }
 
-    public String getConjuntoNombre() {
-        return conjuntoNombre;
-    }
-
-    public void setConjuntoNombre(String conjuntoNombre) {
-        this.conjuntoNombre = conjuntoNombre;
-    }
-
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -165,19 +159,19 @@ public class Usuario implements Serializable{
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 

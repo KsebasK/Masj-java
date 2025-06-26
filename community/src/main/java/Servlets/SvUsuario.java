@@ -1,6 +1,8 @@
 package Servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,6 +33,7 @@ public class SvUsuario extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
+        // Obtener datos del formulario
         String primerNombre = request.getParameter("primerNombre");
         String segundoNombre = request.getParameter("segundoNombre");
         String primerApellido = request.getParameter("primerApellido");
@@ -38,7 +41,6 @@ public class SvUsuario extends HttpServlet {
         String numeroCelular = request.getParameter("numeroCelular");
         String correo = request.getParameter("correoElectronico");
         String contrasena = request.getParameter("contrasena");
-        String conjunto = request.getParameter("conjuntoNombre");
         String fechaNacimiento = request.getParameter("fechaNacimiento");
         String estado = request.getParameter("estado");
         String rol = request.getParameter("rol");
@@ -46,29 +48,39 @@ public class SvUsuario extends HttpServlet {
         int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
 
         Usuario usu = new Usuario();
+
         usu.setPrimerNombre(primerNombre);
         usu.setSegundoNombre(segundoNombre);
         usu.setPrimerApellido(primerApellido);
         usu.setSegundoApellido(segundoApellido);
         usu.setNumeroCelular(numeroCelular);
         usu.setCorreoElectronico(correo);
-        usu.setContrasena(contrasena);
-        usu.setConjuntoNombre(conjunto);
-        usu.setEstado(estado);
-        usu.setRol(rol);
-        usu.setTipoDocumento(tipoDocumento);
-        usu.setNumDocumento(numDocumento);
 
-        // Conversión de fecha
+        // Encriptar la contraseña
+        String passEncriptada = Controladora.encriptarSHA256(contrasena);
+        usu.setContrasena(passEncriptada);
+
+        // Convertir y setear la fecha de nacimiento
         try {
-            java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date fecha = formato.parse(fechaNacimiento);
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = formato.parse(fechaNacimiento);
             usu.setFechaNacimiento(fecha);
         } catch (Exception e) {
             e.printStackTrace();
+            request.setAttribute("error", "Formato de fecha incorrecto");
+            request.getRequestDispatcher("registro.jsp").forward(request, response);
+            return;
         }
 
+        usu.setEstado(Usuario.Estado.valueOf(estado));
+        usu.setRol(Usuario.Rol.valueOf(rol));
+        usu.setTipoDocumento(tipoDocumento);
+        usu.setNumDocumento(numDocumento);
+
+        // Guardar en base de datos
         control.crearUsuario(usu);
+
+        // Redirigir al listar
         response.sendRedirect("SvUsuario");
     }
 

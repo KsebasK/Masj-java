@@ -94,8 +94,6 @@
     <label>Correo Electrónico:</label>
     <input type="email" name="correoElectronico" value="<%= usuEditar.getCorreoElectronico() %>" required>
 
-    <label>Nombre del Conjunto:</label>
-    <input type="text" name="conjuntoNombre" value="<%= usuEditar.getConjuntoNombre() %>" required>
 
     <label>Tipo de Documento:</label>
     <select name="tipoDocumento" required>
