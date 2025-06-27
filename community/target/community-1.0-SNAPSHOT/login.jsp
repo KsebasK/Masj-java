@@ -14,15 +14,14 @@
     <link rel="stylesheet" href="Login.css"/>
     
 </head>
-<body>
-
-<div class="container">
-    <div class="background"></div>
-    <div class="circles">
+    <body>
+        <div class="container">
+        <div class="background"></div>
+        <div class="circles">
         <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-    </div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
     <div class="lines"></div>
     <div class="neon-ring"></div>
     <div class="glow"></div>
