@@ -9,18 +9,19 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    
     <link rel="stylesheet" href="Styles/Login.css">
+    <link rel="stylesheet" href="Login.css"/>
+    
 </head>
-<body>
-
-<div class="container">
-    <div class="background"></div>
-    <div class="circles">
+    <body>
+        <div class="container">
+        <div class="background"></div>
+        <div class="circles">
         <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-    </div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
     <div class="lines"></div>
     <div class="neon-ring"></div>
     <div class="glow"></div>
