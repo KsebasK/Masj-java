@@ -2,7 +2,17 @@ package logica;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "usuario")
@@ -52,11 +62,22 @@ public class Usuario implements Serializable {
     @Column(name = "NumDocumento", nullable = false)
     private int numDocumento;
 
+    // CAMPOS AGREGADOS para torre, apartamento y conjunto
+    @Column(name = "Torre")
+    private String torre;
+
+    @Column(name = "Apartamento")
+    private String apartamento;
+
+    @Column(name = "ConjuntoNombre", nullable = false)
+    private String conjuntoNombre;
+
     public enum Rol {
         propietario, arrendatario, guardia, administrador;
 
-        public String toLowerCase() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        @Override
+        public String toString() {
+            return this.name().toLowerCase();
         }
     }
 
@@ -64,12 +85,13 @@ public class Usuario implements Serializable {
         activo, inactivo
     }
 
+    // CONSTRUCTORES
     public Usuario() {}
 
     public Usuario(int idUsuario, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
                    String numeroCelular, String correoElectronico, String contrasena,
                    Date fechaNacimiento, Estado estado, Rol rol,
-                   String tipoDocumento, int numDocumento) {
+                   String tipoDocumento, int numDocumento, String torre, String apartamento, String conjuntoNombre) {
         this.idUsuario = idUsuario;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -83,10 +105,12 @@ public class Usuario implements Serializable {
         this.rol = rol;
         this.tipoDocumento = tipoDocumento;
         this.numDocumento = numDocumento;
+        this.torre = torre;
+        this.apartamento = apartamento;
+        this.conjuntoNombre = conjuntoNombre;
     }
 
-    // Getters y setters
-
+    // GETTERS Y SETTERS EXISTENTES
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -189,5 +213,30 @@ public class Usuario implements Serializable {
 
     public void setNumDocumento(int numDocumento) {
         this.numDocumento = numDocumento;
+    }
+
+    // GETTERS Y SETTERS PARA LOS NUEVOS CAMPOS
+    public String getTorre() {
+        return torre;
+    }
+
+    public void setTorre(String torre) {
+        this.torre = torre;
+    }
+
+    public String getApartamento() {
+        return apartamento;
+    }
+
+    public void setApartamento(String apartamento) {
+        this.apartamento = apartamento;
+    }
+
+    public String getConjuntoNombre() {
+        return conjuntoNombre;
+    }
+
+    public void setConjuntoNombre(String conjuntoNombre) {
+        this.conjuntoNombre = conjuntoNombre;
     }
 }

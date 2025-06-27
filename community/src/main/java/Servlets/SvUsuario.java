@@ -38,54 +38,73 @@ public class SvUsuario extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        // Obtener datos del formulario
-        String primerNombre = request.getParameter("primerNombre");
-        String segundoNombre = request.getParameter("segundoNombre");
-        String primerApellido = request.getParameter("primerApellido");
-        String segundoApellido = request.getParameter("segundoApellido");
-        String numeroCelular = request.getParameter("numeroCelular");
-        String correo = request.getParameter("correoElectronico");
-        String contrasena = request.getParameter("contrasena");
-        String fechaNacimiento = request.getParameter("fechaNacimiento");
-        String rol = request.getParameter("rol");
-        String tipoDocumento = request.getParameter("tipoDocumento");
-        int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
-        String torre = request.getParameter("torre");
-        String apartamento = request.getParameter("apartamento");
-
-        Usuario usu = new Usuario();
-
-        usu.setPrimerNombre(primerNombre);
-        usu.setSegundoNombre(segundoNombre);
-        usu.setPrimerApellido(primerApellido);
-        usu.setSegundoApellido(segundoApellido);
-        usu.setNumeroCelular(numeroCelular);
-        usu.setCorreoElectronico(correo);
-
-        // Encriptar la contraseña
-        String passEncriptada = Controladora.encriptarSHA256(contrasena);
-        usu.setContrasena(passEncriptada);
-
-        // Convertir y setear la fecha de nacimiento
         try {
+            // Obtener datos del formulario
+            String primerNombre = request.getParameter("primerNombre");
+            String segundoNombre = request.getParameter("segundoNombre");
+            String primerApellido = request.getParameter("primerApellido");
+            String segundoApellido = request.getParameter("segundoApellido");
+            String numeroCelular = request.getParameter("numeroCelular");
+            String correo = request.getParameter("correoElectronico");
+            String contrasena = request.getParameter("contrasena");
+            String fechaNacimiento = request.getParameter("fechaNacimiento");
+            String rol = request.getParameter("rol");
+            String tipoDocumento = request.getParameter("tipoDocumento");
+            int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
+            String torre = request.getParameter("torre");
+            String apartamento = request.getParameter("apartamento");
+
+            // Crear nuevo usuario
+            Usuario usu = new Usuario();
+
+            usu.setPrimerNombre(primerNombre);
+            usu.setSegundoNombre(segundoNombre);
+            usu.setPrimerApellido(primerApellido);
+            usu.setSegundoApellido(segundoApellido);
+            usu.setNumeroCelular(numeroCelular);
+            usu.setCorreoElectronico(correo);
+
+            // Encriptar la contraseña
+            String passEncriptada = Controladora.encriptarSHA256(contrasena);
+            usu.setContrasena(passEncriptada);
+
+            // Convertir y setear la fecha de nacimiento
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = formato.parse(fechaNacimiento);
             usu.setFechaNacimiento(fecha);
+
+            // Configurar otros campos
+            usu.setEstado(Usuario.Estado.activo);
+            usu.setRol(Usuario.Rol.valueOf(rol));
+            usu.setTipoDocumento(tipoDocumento);
+            usu.setNumDocumento(numDocumento);
+            
+            // IMPORTANTE: Asignar torre y apartamento que faltaban
+            usu.setTorre(torre);
+            usu.setApartamento(apartamento);
+            
+            // Campo obligatorio en la base de datos
+            usu.setConjuntoNombre("Conjunto Unico"); // Valor fijo del conjunto
+
+            // GUARDAR EL USUARIO EN LA BASE DE DATOS
+            control.crearUsuario(usu);
+
+            // Mensaje de éxito en la sesión
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("mensajeExito", "Usuario registrado exitosamente. Ahora puedes iniciar sesión.");
+
+            // REDIRIGIR AL LOGIN EN LUGAR DE LA LISTA DE USUARIOS
+            response.sendRedirect("login.jsp");
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Número de documento inválido");
+            request.getRequestDispatcher("registro.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("error", "Formato de fecha incorrecto");
+            request.setAttribute("error", "Error al registrar usuario: " + e.getMessage());
             request.getRequestDispatcher("registro.jsp").forward(request, response);
-            return;
         }
-
-        // El estado siempre será activo
-        usu.setEstado(Usuario.Estado.activo);
-        usu.setRol(Usuario.Rol.valueOf(rol));
-        usu.setTipoDocumento(tipoDocumento);
-        usu.setNumDocumento(numDocumento);
-        
-        // Redirigir al listar
-        response.sendRedirect("SvUsuario");
     }
 
     @Override
