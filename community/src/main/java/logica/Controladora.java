@@ -3,6 +3,8 @@ package logica;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import persistencias.*;
 
@@ -118,6 +120,16 @@ public class Controladora {
     public int buscarIdApartamentoPorTorreYApto(String torre, String apartamento) {
     Apartamento apto = apartamentoJpa.findByTorreYApto(torre, apartamento);
     return apto != null ? apto.getIdApartamento() : 0;
+}
+public List<Actividad> obtenerActividadesRecientes() {
+    List<Actividad> actividades = new ArrayList<>();
+
+    // Simulación temporal (reemplaza con acceso real a BD)
+    actividades.add(new Actividad(1, "Registro", "Usuario registrado", new Date(), "COMPLETADO"));
+    actividades.add(new Actividad(2, "Login", "Usuario inició sesión", new Date(), "PENDIENTE"));
+    actividades.add(new Actividad(3, "Alquiler", "Zona común reservada", new Date(), "EN PROCESO"));
+
+    return actividades;
 }
 
 }

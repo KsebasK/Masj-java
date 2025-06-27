@@ -13,6 +13,7 @@ persistencias\exceptions\NonexistentEntityException.class
 persistencia\exceptions\PreexistingEntityException.class
 Servlets\SvEliminar.class
 persistencia\exceptions\IllegalOrphanException.class
+logica\Actividad.class
 logica\Apartamento.class
 Servlets\exceptions\NonexistentEntityException.class
 persistencias\ResidenteJpaController.class
