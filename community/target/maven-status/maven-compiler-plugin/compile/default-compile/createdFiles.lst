@@ -1,4 +1,5 @@
 logica\Usuario$Rol.class
+logica\Apartamento.class
 logica\Usuario.class
 com\masj\community\resources\JavaEE8Resource.class
 persistencias\exceptions\IllegalOrphanException.class
