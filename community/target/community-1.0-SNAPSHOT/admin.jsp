@@ -25,7 +25,7 @@
         Usuario u = (Usuario) session.getAttribute("usuario");
         String nombreCompleto = u.getPrimerNombre() + " " + u.getPrimerApellido();
         %>
-    <h1>Bienvenido, <%= nombreCompleto %></h1>
+    <h1>Bienvenido, Administrador <%= nombreCompleto %> </h1>
 
         <!-- Estadísticas -->
         <div class="cards-grid">
