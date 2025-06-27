@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+
 import persistencias.ControladoraPersistencia;
 
 public class Controladora {
@@ -65,6 +66,23 @@ public class Controladora {
     }
 }
 
+//     public List<Apartamento> traerApartamentos() {
+//         throw new UnsupportedOperationException("Not supported yet.");
+//     }
+
+//     public Apartamento buscarApartamentoPorTorreYApto(String torre, String apartamento) {
+//         throw new UnsupportedOperationException("Not supported yet.");
+//     }
+
+//     public void crearApartamento(Apartamento apt) {
+//         throw new UnsupportedOperationException("Not supported yet.");
+//     }
+
+//     public void crearResidente(Residente residente) {
+//         throw new UnsupportedOperationException("Not supported yet.");
+//     }
+
     
     
+// }
 }

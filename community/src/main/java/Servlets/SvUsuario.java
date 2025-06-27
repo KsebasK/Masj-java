@@ -4,9 +4,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import logica.Controladora;
 import logica.Usuario;
 
@@ -42,10 +47,11 @@ public class SvUsuario extends HttpServlet {
         String correo = request.getParameter("correoElectronico");
         String contrasena = request.getParameter("contrasena");
         String fechaNacimiento = request.getParameter("fechaNacimiento");
-        String estado = request.getParameter("estado");
         String rol = request.getParameter("rol");
         String tipoDocumento = request.getParameter("tipoDocumento");
         int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
+        String torre = request.getParameter("torre");
+        String apartamento = request.getParameter("apartamento");
 
         Usuario usu = new Usuario();
 
@@ -72,20 +78,18 @@ public class SvUsuario extends HttpServlet {
             return;
         }
 
-        usu.setEstado(Usuario.Estado.valueOf(estado));
+        // El estado siempre será activo
+        usu.setEstado(Usuario.Estado.activo);
         usu.setRol(Usuario.Rol.valueOf(rol));
         usu.setTipoDocumento(tipoDocumento);
         usu.setNumDocumento(numDocumento);
-
-        // Guardar en base de datos
-        control.crearUsuario(usu);
-
+        
         // Redirigir al listar
         response.sendRedirect("SvUsuario");
     }
 
     @Override
     public String getServletInfo() {
-        return "Servlet para registrar y listar usuarios";
+        return "Servlet para registrar y listar usuarios con apartamentos";
     }
 }
