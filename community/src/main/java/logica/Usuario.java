@@ -51,13 +51,17 @@ public class Usuario implements Serializable {
 
     @Column(name = "NumDocumento", nullable = false)
     private int numDocumento;
+    
+    
 
     public enum Rol {
         propietario, arrendatario, guardia, administrador;
 
-        public String toLowerCase() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
+       @Override
+        public String toString() {
+         return name().toLowerCase();
+    }
+
     }
 
     public enum Estado {

@@ -49,6 +49,7 @@
                                 <td><%= usu.getFechaNacimiento() %></td>
                                 <td><%= usu.getRol() %></td>
                                 <td><%= usu.getEstado() %></td>
+                                <td><%= usu.getApartamento() %></td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <form action="SvEditar" method="GET">
