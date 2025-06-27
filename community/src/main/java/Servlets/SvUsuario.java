@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logica.Apartamento;
 import logica.Controladora;
 import logica.Usuario;
 
@@ -51,8 +52,10 @@ public class SvUsuario extends HttpServlet {
             String rol = request.getParameter("rol");
             String tipoDocumento = request.getParameter("tipoDocumento");
             int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
+            
+            // Datos del apartamento
             String torre = request.getParameter("torre");
-            String apartamento = request.getParameter("apartamento");
+            String numeroApto = request.getParameter("apartamento");
 
             // Crear nuevo usuario
             Usuario usu = new Usuario();
@@ -79,12 +82,9 @@ public class SvUsuario extends HttpServlet {
             usu.setTipoDocumento(tipoDocumento);
             usu.setNumDocumento(numDocumento);
             
-            // IMPORTANTE: Asignar torre y apartamento que faltaban
-            usu.setTorre(torre);
-            usu.setApartamento(apartamento);
-            
-            // Campo obligatorio en la base de datos
-            usu.setConjuntoNombre("Conjunto Unico"); // Valor fijo del conjunto
+            // BUSCAR O CREAR EL APARTAMENTO
+            Apartamento apartamentos = control.buscarOCrearApartamento(torre, numeroApto);
+            usu.setApartamentos(apartamentos);
 
             // GUARDAR EL USUARIO EN LA BASE DE DATOS
             control.crearUsuario(usu);
@@ -93,17 +93,17 @@ public class SvUsuario extends HttpServlet {
             HttpSession sesion = request.getSession();
             sesion.setAttribute("mensajeExito", "Usuario registrado exitosamente. Ahora puedes iniciar sesión.");
 
-            // REDIRIGIR AL LOGIN EN LUGAR DE LA LISTA DE USUARIOS
+            // REDIRIGIR AL LOGIN
             response.sendRedirect("login.jsp");
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
             request.setAttribute("error", "Número de documento inválido");
-            request.getRequestDispatcher("registro.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Error al registrar usuario: " + e.getMessage());
-            request.getRequestDispatcher("registro.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 

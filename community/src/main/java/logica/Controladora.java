@@ -66,6 +66,9 @@ public class Controladora {
     }
 }
 
+
+
+
 //     public List<Apartamento> traerApartamentos() {
 //         throw new UnsupportedOperationException("Not supported yet.");
 //     }
@@ -85,4 +88,39 @@ public class Controladora {
     
     
 // }
+
+   public Apartamento buscarOCrearApartamento(String torre, String numeroApto) {
+    // Primero intentar buscar el apartamento existente
+    Apartamento apartamentoExistente = buscarApartamentoPorTorreYApto(torre, numeroApto);
+    
+    if (apartamentoExistente != null) {
+        // Si existe, devolverlo
+        return apartamentoExistente;
+    } else {
+        // Si no existe, crear uno nuevo
+        Apartamento nuevoApartamento = new Apartamento();
+        nuevoApartamento.setTorre(torre);
+        nuevoApartamento.setApto(numeroApto);
+        
+        // Guardarlo en la base de datos
+        crearApartamento(nuevoApartamento);
+        
+        // Buscarlo nuevamente para obtener el ID generado por la base de datos
+        return buscarApartamentoPorTorreYApto(torre, numeroApto);
+    }
+}
+
+// También agrega estos métodos de apoyo:
+
+public List<Apartamento> traerApartamentos() {
+    return controlPersis.traerApartamentos();
+}
+
+public Apartamento buscarApartamentoPorTorreYApto(String torre, String apartamento) {
+    return controlPersis.buscarApartamentoPorTorreYApto(torre, apartamento);
+}
+
+public void crearApartamento(Apartamento apt) {
+    controlPersis.crearApartamento(apt);
+}
 }
