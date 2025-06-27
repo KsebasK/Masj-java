@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -62,18 +64,13 @@ public class Usuario implements Serializable {
     @Column(name = "NumDocumento", nullable = false)
     private int numDocumento;
 
-    // CAMPOS AGREGADOS para torre, apartamento y conjunto
-    @Column(name = "Torre")
-    private String torre;
-
-    @Column(name = "Apartamento")
-    private String apartamento;
-
-    @Column(name = "ConjuntoNombre", nullable = false)
-    private String conjuntoNombre;
+    // RELACIÓN CON APARTAMENTO
+    @ManyToOne
+    @JoinColumn(name = "idApartamentos") // Esta columna SI necesitas agregarla a la tabla usuario
+    private Apartamento apartamentos;
 
     public enum Rol {
-        propietario, arrendatario, guardia, administrador;
+        propietario, guardia, administrador;
 
         @Override
         public String toString() {
@@ -91,7 +88,7 @@ public class Usuario implements Serializable {
     public Usuario(int idUsuario, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
                    String numeroCelular, String correoElectronico, String contrasena,
                    Date fechaNacimiento, Estado estado, Rol rol,
-                   String tipoDocumento, int numDocumento, String torre, String apartamento, String conjuntoNombre) {
+                   String tipoDocumento, int numDocumento, Apartamento apartamentos) {
         this.idUsuario = idUsuario;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -105,9 +102,7 @@ public class Usuario implements Serializable {
         this.rol = rol;
         this.tipoDocumento = tipoDocumento;
         this.numDocumento = numDocumento;
-        this.torre = torre;
-        this.apartamento = apartamento;
-        this.conjuntoNombre = conjuntoNombre;
+        this.apartamentos = apartamentos;
     }
 
     // GETTERS Y SETTERS EXISTENTES
@@ -215,28 +210,21 @@ public class Usuario implements Serializable {
         this.numDocumento = numDocumento;
     }
 
-    // GETTERS Y SETTERS PARA LOS NUEVOS CAMPOS
+    // GETTER Y SETTER PARA APARTAMENTO
+    public Apartamento getApartamento() {
+        return apartamentos;
+    }
+
+    public void setApartamentos(Apartamento apartamentos) {
+        this.apartamentos = apartamentos;
+    }
+
+    // MÉTODOS DE CONVENIENCIA para acceder a los datos del apartamento
     public String getTorre() {
-        return torre;
+        return apartamentos != null ? apartamentos.getTorre() : null;
     }
 
-    public void setTorre(String torre) {
-        this.torre = torre;
-    }
-
-    public String getApartamento() {
-        return apartamento;
-    }
-
-    public void setApartamento(String apartamento) {
-        this.apartamento = apartamento;
-    }
-
-    public String getConjuntoNombre() {
-        return conjuntoNombre;
-    }
-
-    public void setConjuntoNombre(String conjuntoNombre) {
-        this.conjuntoNombre = conjuntoNombre;
+    public String getNumeroApartamento() {
+        return apartamentos != null ? apartamentos.getApto() : null;
     }
 }
