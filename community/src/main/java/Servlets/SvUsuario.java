@@ -123,7 +123,7 @@ public class SvUsuario extends HttpServlet {
         }
 
         // 6. Redirigir al inicio tras éxito
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }
 
     @Override
