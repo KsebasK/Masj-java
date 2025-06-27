@@ -1,0 +1,123 @@
+CREATE DATABASE IF NOT EXISTS masjcmy CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE masjcmy;
+
+-- Apartamentos
+CREATE TABLE apartamentos (
+  idApartamentos INT AUTO_INCREMENT PRIMARY KEY,
+  torre VARCHAR(10) NOT NULL,
+  apto VARCHAR(5) NOT NULL
+);
+
+-- Usuario
+CREATE TABLE usuario (
+  idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+  PrimerNombre VARCHAR(25) NOT NULL,
+  SegundoNombre VARCHAR(25),
+  PrimerApellido VARCHAR(25) NOT NULL,
+  SegundoApellido VARCHAR(30),
+  NumeroCelular VARCHAR(15) NOT NULL,
+  CorreoElectronico VARCHAR(40) NOT NULL,
+  Contrasena VARCHAR(64) NOT NULL,
+  FechaNacimiento DATE NOT NULL,
+  Estado ENUM('activo','inactivo') NOT NULL,
+  Rol ENUM('propietario','arrendatario','guardia','administrador') NOT NULL,
+  TipoDocumento VARCHAR(10) NOT NULL,
+  NumDocumento INT NOT NULL
+);
+
+-- Residentes
+CREATE TABLE residentes (
+  idResidente INT PRIMARY KEY,
+  idApartamento INT NOT NULL,
+  FOREIGN KEY (idResidente) REFERENCES usuario(idUsuario),
+  FOREIGN KEY (idApartamento) REFERENCES apartamentos(idApartamentos)
+);
+
+-- Visitante
+CREATE TABLE visitante (
+  idVisitante INT AUTO_INCREMENT PRIMARY KEY,
+  NombresVisitante VARCHAR(40) NOT NULL,
+  ApellidosVisitante VARCHAR(40) NOT NULL,
+  TipoDocumento VARCHAR(10) NOT NULL,
+  NumDocumento INT NOT NULL,
+  idResidente INT NOT NULL,
+  idGuardia INT NOT NULL,
+  idApartamento INT NOT NULL,
+  hora_entrada TIME DEFAULT NULL,
+  hora_salida TIME DEFAULT NULL,
+  FOREIGN KEY (idResidente) REFERENCES residentes(idResidente),
+  FOREIGN KEY (idGuardia) REFERENCES usuario(idUsuario),
+  FOREIGN KEY (idApartamento) REFERENCES apartamentos(idApartamentos)
+);
+
+-- Parqueadero
+CREATE TABLE parqueadero (
+  idBahia INT AUTO_INCREMENT PRIMARY KEY,
+  FechaEntrada DATE DEFAULT NULL,
+  FechaSalida DATE DEFAULT NULL,
+  Novedad TEXT DEFAULT NULL,
+  Estado ENUM('Ocupado','Desocupado') NOT NULL DEFAULT 'Desocupado'
+);
+
+-- Vehículos
+CREATE TABLE vehiculos (
+  idVehiculo INT AUTO_INCREMENT PRIMARY KEY,
+  PlacaVehiculo VARCHAR(6) NOT NULL,
+  MarcaVehiculo VARCHAR(15),
+  ModeloVehiculo VARCHAR(25),
+  idBahia INT NOT NULL,
+  idResidente INT NOT NULL,
+  idVisitante INT,
+  hora_ingreso TIMESTAMP NULL DEFAULT NULL,
+  hora_salida TIMESTAMP NULL DEFAULT NULL,
+  valor_pagado INT DEFAULT NULL,
+  FOREIGN KEY (idBahia) REFERENCES parqueadero(idBahia),
+  FOREIGN KEY (idResidente) REFERENCES residentes(idResidente),
+  FOREIGN KEY (idVisitante) REFERENCES visitante(idVisitante)
+);
+
+-- Zona común
+CREATE TABLE zonacomun (
+  idZonaComun INT AUTO_INCREMENT PRIMARY KEY,
+  TipoZona VARCHAR(25) NOT NULL,
+  EstadoZona ENUM('Disponible','Ocupada') NOT NULL
+);
+
+-- Alquiler de zonas comunes
+CREATE TABLE alquilerzonascomunes (
+  idAlquilerZonaComun INT AUTO_INCREMENT PRIMARY KEY,
+  FechaAlquiler DATE NOT NULL,
+  CantidadPersonas INT DEFAULT NULL,
+  TotalPago INT NOT NULL,
+  HoraLimite DATETIME NOT NULL,
+  idZonaComun INT NOT NULL,
+  idResidente INT NOT NULL,
+  FOREIGN KEY (idZonaComun) REFERENCES zonacomun(idZonaComun),
+  FOREIGN KEY (idResidente) REFERENCES residentes(idResidente)
+);
+
+-- Alquiler de parqueadero
+CREATE TABLE alquilerparqueadero (
+  idAlquilerParqueadero INT AUTO_INCREMENT PRIMARY KEY,
+  FechaIngreso DATE NOT NULL,
+  FechaSalida DATE,
+  TotalPago INT,
+  idBahia INT NOT NULL,
+  idVisitante INT NOT NULL,
+  idGuardia INT NOT NULL,
+  FOREIGN KEY (idBahia) REFERENCES parqueadero(idBahia),
+  FOREIGN KEY (idVisitante) REFERENCES visitante(idVisitante),
+  FOREIGN KEY (idGuardia) REFERENCES usuario(idUsuario)
+);
+
+-- Quejas
+CREATE TABLE quejas (
+  idQueja INT AUTO_INCREMENT PRIMARY KEY,
+  FechaQueja DATE NOT NULL,
+  MotivoQueja TEXT NOT NULL,
+  idResidente INT NOT NULL,
+  EstadoQueja TINYINT NOT NULL,
+  idAdministrador INT NOT NULL,
+  FOREIGN KEY (idResidente) REFERENCES residentes(idResidente),
+  FOREIGN KEY (idAdministrador) REFERENCES usuario(idUsuario)
+);

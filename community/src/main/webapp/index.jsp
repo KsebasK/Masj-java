@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>Registro</title>
     <link rel="stylesheet" href="Styles/index.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
