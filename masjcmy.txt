@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS masjcmy CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE masjcmy;
+CREATE DATABASE IF NOT EXISTS masjcmy1 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE masjcmy1;
 
 -- Apartamentos
 CREATE TABLE apartamentos (
@@ -120,4 +120,19 @@ CREATE TABLE quejas (
   idAdministrador INT NOT NULL,
   FOREIGN KEY (idResidente) REFERENCES residentes(idResidente),
   FOREIGN KEY (idAdministrador) REFERENCES usuario(idUsuario)
+);
+
+-- Paqueterías
+CREATE TABLE paqueterias (
+  idPaqueteria INT AUTO_INCREMENT PRIMARY KEY,
+  descripcion TEXT NOT NULL,
+  fechaRecepcion DATETIME NOT NULL,
+  estadoEntrega ENUM('pendiente', 'entregado') NOT NULL DEFAULT 'pendiente',
+  fechaEntrega DATETIME DEFAULT NULL,
+  idGuardia INT NOT NULL,
+  idApartamento INT NOT NULL,
+  idResidente INT DEFAULT NULL,
+  FOREIGN KEY (idGuardia) REFERENCES usuario(idUsuario),
+  FOREIGN KEY (idApartamento) REFERENCES apartamentos(idApartamentos),
+  FOREIGN KEY (idResidente) REFERENCES residentes(idResidente)
 );
