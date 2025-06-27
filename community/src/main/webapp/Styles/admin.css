@@ -1,7 +1,7 @@
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
+            -primary: #4361ee;
+            -secondary: #3f37c9;
+            -accent: #4895ef;
             --dark: #222831;
             --light: #f8f9fa;
             --success: #4cc9f0;
@@ -537,3 +537,9 @@
                 justify-content: space-between;
             }
         }
+        
+        .sidebar-menu li a.active {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--success);
+    }
+
