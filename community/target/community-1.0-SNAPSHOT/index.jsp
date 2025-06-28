@@ -60,7 +60,7 @@
           Rol:
           <select name="rol" required>
             <option value="">Selecciona</option>
-            <option value="propietario">Propietario</option>
+            <option value="arrendatario">Arrendatario</option>
           </select>
         </label>
 

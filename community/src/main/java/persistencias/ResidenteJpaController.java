@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 import logica.Residente;
+import persistencias.VisitanteJpaController;
+import logica.Visitante;
 
 public class ResidenteJpaController implements Serializable {
 
