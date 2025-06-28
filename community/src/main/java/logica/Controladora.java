@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import logica.Visitante;
 
 import persistencias.ControladoraPersistencia;
 
@@ -96,7 +97,19 @@ public class Controladora {
     public Apartamento obtenerApartamentoPorTorreYApto(String torre, String apto) {
     return controlPersis.buscarApartamentoPorTorreYApto(torre, apto);
 }
+// ================= VISITANTE =================
 
+public void registrarVisitante(Visitante visitante) {
+    controlPersis.registrarVisitante(visitante);
+}
+
+public List<Visitante> traerVisitantes() {
+    return controlPersis.traerVisitantes();
+}
+
+public Visitante buscarVisitante(int id) {
+    return controlPersis.buscarVisitante(id);
+}
 }
 
 
