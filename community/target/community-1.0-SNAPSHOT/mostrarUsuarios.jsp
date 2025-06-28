@@ -10,10 +10,14 @@
     <meta charset="UTF-8">
     <title>Lista de Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <<link rel="stylesheet" href="Styles/admin.css">
 </head>
+<%@include file="common/sidebar.jsp" %>
+<%@include file="common/header.jsp" %>
 <body style="background-color: #f1f4f9;">
-
-<div class="container mt-5">
+<div class="main-content">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
             <h3 class="mb-0">Usuarios Registrados</h3>
@@ -49,6 +53,7 @@
                                 <td><%= usu.getFechaNacimiento() %></td>
                                 <td><%= usu.getRol() %></td>
                                 <td><%= usu.getEstado() %></td>
+        
                                 <td>
                                     <div class="d-flex gap-2">
                                         <form action="SvEditar" method="GET">
@@ -72,7 +77,7 @@
         </div>
     </div>
 </div>
-
+<%@include file="common/footer.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

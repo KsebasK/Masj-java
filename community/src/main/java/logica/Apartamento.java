@@ -1,13 +1,7 @@
 package logica;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "apartamentos")
@@ -16,7 +10,7 @@ public class Apartamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idApartamentos")
-    private int idApartamentos;
+    private int idApartamento;
 
     @Column(name = "torre")
     private String torre;
@@ -24,22 +18,20 @@ public class Apartamento implements Serializable {
     @Column(name = "apto")
     private String apto;
 
-    // Constructores
     public Apartamento() {}
 
-    public Apartamento(int idApartamentos, String torre, String apto) {
-        this.idApartamentos = idApartamentos;
+    public Apartamento(int idApartamento, String torre, String apto) {
+        this.idApartamento = idApartamento;
         this.torre = torre;
         this.apto = apto;
     }
 
-    // Getters y Setters
-    public int getIdApartamentos() {
-        return idApartamentos;
+    public int getIdApartamento() {
+        return idApartamento;
     }
 
-    public void setIdApartamentos(int idApartamentos) {
-        this.idApartamentos = idApartamentos;
+    public void setIdApartamento(int idApartamento) {
+        this.idApartamento = idApartamento;
     }
 
     public String getTorre() {
@@ -56,10 +48,5 @@ public class Apartamento implements Serializable {
 
     public void setApto(String apto) {
         this.apto = apto;
-    }
-
-    @Override
-    public String toString() {
-        return "Torre " + torre + " - Apto " + apto;
     }
 }

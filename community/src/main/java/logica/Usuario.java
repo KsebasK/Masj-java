@@ -2,19 +2,7 @@ package logica;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "usuario")
@@ -63,32 +51,29 @@ public class Usuario implements Serializable {
 
     @Column(name = "NumDocumento", nullable = false)
     private int numDocumento;
-
-    // RELACIÓN CON APARTAMENTO
-    @ManyToOne
-    @JoinColumn(name = "idApartamentos") // Esta columna SI necesitas agregarla a la tabla usuario
-    private Apartamento apartamentos;
+    
+    
 
     public enum Rol {
-        propietario, guardia, administrador;
+        propietario, arrendatario, guardia, administrador;
 
-        @Override
+       @Override
         public String toString() {
-            return this.name().toLowerCase();
-        }
+         return name().toLowerCase();
+    }
+
     }
 
     public enum Estado {
         activo, inactivo
     }
 
-    // CONSTRUCTORES
     public Usuario() {}
 
     public Usuario(int idUsuario, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
                    String numeroCelular, String correoElectronico, String contrasena,
                    Date fechaNacimiento, Estado estado, Rol rol,
-                   String tipoDocumento, int numDocumento, Apartamento apartamentos) {
+                   String tipoDocumento, int numDocumento) {
         this.idUsuario = idUsuario;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -102,10 +87,10 @@ public class Usuario implements Serializable {
         this.rol = rol;
         this.tipoDocumento = tipoDocumento;
         this.numDocumento = numDocumento;
-        this.apartamentos = apartamentos;
     }
 
-    // GETTERS Y SETTERS EXISTENTES
+    // Getters y setters
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -208,23 +193,5 @@ public class Usuario implements Serializable {
 
     public void setNumDocumento(int numDocumento) {
         this.numDocumento = numDocumento;
-    }
-
-    // GETTER Y SETTER PARA APARTAMENTO
-    public Apartamento getApartamento() {
-        return apartamentos;
-    }
-
-    public void setApartamentos(Apartamento apartamentos) {
-        this.apartamentos = apartamentos;
-    }
-
-    // MÉTODOS DE CONVENIENCIA para acceder a los datos del apartamento
-    public String getTorre() {
-        return apartamentos != null ? apartamentos.getTorre() : null;
-    }
-
-    public String getNumeroApartamento() {
-        return apartamentos != null ? apartamentos.getApto() : null;
     }
 }
