@@ -16,6 +16,7 @@
     
 </head>
 <body>
+    
 <%@include file="common/sidebar.jsp" %>
 <%@include file="common/header.jsp" %>
 
