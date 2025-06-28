@@ -10,23 +10,80 @@
     <meta charset="UTF-8">
     <title>Lista de Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <<link rel="stylesheet" href="Styles/admin.css">
+    <link rel="stylesheet" href="Styles/admin.css">
+    <style>
+        :root {
+            --sunset-yellow: #fecd1a;
+            --sunset-orange: #000000;
+            --sunset-red: #ff4d6d;
+            --sunset-purple: #8338ec;
+            --sunset-dark-purple: #2a004f;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--sunset-dark-purple);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--white);
+        }
+
+        .card {
+            background-color: #3c096c;
+            color: var(--white);
+            border: none;
+        }
+
+        .card-header {
+            background-color: var(--sunset-orange);
+            color: var(--white);
+        }
+
+        .table-custom {
+            background-color: transparent;
+            color: var(--white);
+        }
+
+        .table-custom thead th {
+            background-color: var(--sunset-purple);
+            color: var(--white);
+        }
+
+        .table-custom tbody tr:hover {
+            background-color: rgba(255, 77, 109, 0.2);
+        }
+
+        .btn-warning {
+            background-color: var(--sunset-yellow);
+            color: black;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: var(--sunset-red);
+            color: white;
+            border: none;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+    </style>
 </head>
 <%@include file="common/sidebar.jsp" %>
 <%@include file="common/header.jsp" %>
-<body style="background-color: #f1f4f9;">
+<body>
 <div class="main-content">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
+    <div class="card shadow mt-4 mx-3">
+        <div class="card-header">
             <h3 class="mb-0">Usuarios Registrados</h3>
         </div>
         <div class="card-body">
             <% if (listaUsuarios != null && !listaUsuarios.isEmpty()) { %>
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered align-middle">
-                        <thead class="table-light">
+                    <table class="table table-hover table-bordered align-middle table-custom">
+                        <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre Completo</th>
@@ -53,7 +110,6 @@
                                 <td><%= usu.getFechaNacimiento() %></td>
                                 <td><%= usu.getRol() %></td>
                                 <td><%= usu.getEstado() %></td>
-        
                                 <td>
                                     <div class="d-flex gap-2">
                                         <form action="SvEditar" method="GET">

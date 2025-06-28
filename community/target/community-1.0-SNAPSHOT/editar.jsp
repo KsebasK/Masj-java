@@ -94,7 +94,6 @@
     <label>Correo Electrónico:</label>
     <input type="email" name="correoElectronico" value="<%= usuEditar.getCorreoElectronico() %>" required>
 
-
     <label>Tipo de Documento:</label>
     <select name="tipoDocumento" required>
         <option disabled selected value="">Seleccione un tipo</option>
@@ -115,14 +114,20 @@
     <label>Rol:</label>
     <select name="rol" required>
         <option disabled selected value="">Seleccione un rol</option>
-        <option value="propietario" <%= "propietario".equals(usuEditar.getRol()) ? "selected" : "" %>>Residente</option>
-        <option value="administrador" <%= "administrador".equals(usuEditar.getRol()) ? "selected" : "" %>>Administrador</option>
-        <option value="guardia" <%= "guardia".equals(usuEditar.getRol()) ? "selected" : "" %>>Guardia</option>
-        <option value="arrendatario" <%= "arrendatario".equals(usuEditar.getRol()) ? "selected" : "" %>>Arrendatario</option>
+        <option value="propietario" <%= "propietario".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Propietario</option>
+        <option value="administrador" <%= "administrador".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Administrador</option>
+        <option value="guardia" <%= "guardia".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Guardia</option>
+        <option value="arrendatario" <%= "arrendatario".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Arrendatario</option>
     </select>
 
     <label>Estado:</label>
-    <input type="text" name="estado" value="<%= usuEditar.getEstado() %>" required>
+    <input type="text" name="estado" value="<%= usuEditar.getEstado().toString() %>" required>
+
+    <label>Torre:</label>
+    <input type="text" name="torre" value="<%= usuEditar.getApartamento() != null ? usuEditar.getApartamento().getTorre() : "" %>" required>
+
+    <label>Apartamento:</label>
+    <input type="text" name="apartamento" value="<%= usuEditar.getApartamento() != null ? usuEditar.getApartamento().getApto() : "" %>" required>
 
     <button type="submit">Guardar Cambios</button>
 

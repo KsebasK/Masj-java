@@ -111,4 +111,6 @@ public class SvUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Servlet para registrar y listar usuarios con apartamentos";
     }
+    
+
 }
