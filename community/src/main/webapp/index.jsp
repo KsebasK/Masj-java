@@ -56,13 +56,13 @@
           <input type="date" name="fechaNacimiento" required />
         </label>
  
-        <label class="roles">
-          Rol:
-          <select name="rol" required>
-            <option value="">Selecciona</option>
-            <option value="propietario">Propietario</option>
-          </select>
-        </label>
+            <label class="roles">
+            Rol:
+            <select name="rol" required>
+              <option value="">Selecciona</option>
+              <option value="arrendatario">Arrendatario</option>
+            </select>
+          </label>
 
       </div>
       
