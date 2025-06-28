@@ -1,3 +1,6 @@
+
+   
+// También agrega estos métodos de apoyo:
 package logica;
 
 import java.nio.charset.StandardCharsets;
@@ -36,37 +39,65 @@ public class Controladora {
         controlPersis.editarUsuario(usu);
     }
 
-    public Usuario traerUsuarios(int idEditar) {
-         return controlPersis.traerUsuario(idEditar); }
-    
-
-
+    // Validar login
     public Usuario validarLogin(String correo, String contrasena) {
-    List<Usuario> usuarios = controlPersis.traerUsuarios();
-    for (Usuario u : usuarios) {
-        if (u.getCorreoElectronico().equalsIgnoreCase(correo) &&
-            u.getContrasena().equals(contrasena)) {
-            return u;
+        List<Usuario> usuarios = controlPersis.traerUsuarios();
+        for (Usuario u : usuarios) {
+            if (u.getCorreoElectronico().equalsIgnoreCase(correo) &&
+                u.getContrasena().equals(contrasena)) {
+                return u;
+            }
         }
+        return null;
     }
-    return null;
-}
 
+    // Encriptar contraseña
     public static String encriptarSHA256(String texto) {
-    try {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hash = md.digest(texto.getBytes(StandardCharsets.UTF_8));
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hash) {
-            hexString.append(String.format("%02x", b));
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(texto.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                hexString.append(String.format("%02x", b));
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
-        return hexString.toString();
-    } catch (NoSuchAlgorithmException e) {
-        throw new RuntimeException(e);
     }
+
+    // ================= APARTAMENTO =================
+
+    public Apartamento buscarOCrearApartamento(String torre, String numeroApto) {
+        Apartamento apartamentoExistente = controlPersis.buscarApartamentoPorTorreYApto(torre, numeroApto);
+        if (apartamentoExistente != null) {
+            return apartamentoExistente;
+        } else {
+            Apartamento nuevoApartamento = new Apartamento();
+            nuevoApartamento.setTorre(torre);
+            nuevoApartamento.setApto(numeroApto);
+            controlPersis.crearApartamento(nuevoApartamento);
+            return controlPersis.buscarApartamentoPorTorreYApto(torre, numeroApto);
+        }
+    }
+
+    public List<Apartamento> traerApartamentos() {
+        return controlPersis.traerApartamentos();
+    }
+
+    public Apartamento buscarApartamentoPorTorreYApto(String torre, String apartamento) {
+        return controlPersis.buscarApartamentoPorTorreYApto(torre, apartamento);
+    }
+
+    public void crearApartamento(Apartamento apt) {
+        controlPersis.crearApartamento(apt);
+    }
+    
+    public Apartamento obtenerApartamentoPorTorreYApto(String torre, String apto) {
+    return controlPersis.buscarApartamentoPorTorreYApto(torre, apto);
 }
 
-
+}
 
 
 //     public List<Apartamento> traerApartamentos() {
@@ -85,42 +116,3 @@ public class Controladora {
 //         throw new UnsupportedOperationException("Not supported yet.");
 //     }
 
-    
-    
-// }
-
-   public Apartamento buscarOCrearApartamento(String torre, String numeroApto) {
-    // Primero intentar buscar el apartamento existente
-    Apartamento apartamentoExistente = buscarApartamentoPorTorreYApto(torre, numeroApto);
-    
-    if (apartamentoExistente != null) {
-        // Si existe, devolverlo
-        return apartamentoExistente;
-    } else {
-        // Si no existe, crear uno nuevo
-        Apartamento nuevoApartamento = new Apartamento();
-        nuevoApartamento.setTorre(torre);
-        nuevoApartamento.setApto(numeroApto);
-        
-        // Guardarlo en la base de datos
-        crearApartamento(nuevoApartamento);
-        
-        // Buscarlo nuevamente para obtener el ID generado por la base de datos
-        return buscarApartamentoPorTorreYApto(torre, numeroApto);
-    }
-}
-
-// También agrega estos métodos de apoyo:
-
-public List<Apartamento> traerApartamentos() {
-    return controlPersis.traerApartamentos();
-}
-
-public Apartamento buscarApartamentoPorTorreYApto(String torre, String apartamento) {
-    return controlPersis.buscarApartamentoPorTorreYApto(torre, apartamento);
-}
-
-public void crearApartamento(Apartamento apt) {
-    controlPersis.crearApartamento(apt);
-}
-}

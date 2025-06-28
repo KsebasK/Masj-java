@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import logica.Apartamento;
 import logica.Controladora;
 import logica.Usuario;
 
@@ -17,8 +18,7 @@ public class SvEditar extends HttpServlet {
             throws ServletException, IOException {
 
         int idEditar = Integer.parseInt(request.getParameter("idUsuarioEdit"));
-
-        Usuario usu = control.traerUsuario(idEditar); // Corregido método correcto
+        Usuario usu = control.traerUsuario(idEditar);
 
         HttpSession sesion = request.getSession();
         sesion.setAttribute("usuEditar", usu);
@@ -46,7 +46,10 @@ public class SvEditar extends HttpServlet {
         String tipoDocumento = request.getParameter("tipoDocumento");
         int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
 
-        // Buscar el usuario original
+        String torre = request.getParameter("torre");
+        String apto = request.getParameter("apartamento");
+
+        // Buscar usuario original
         Usuario usu = control.traerUsuario(idUsuario);
 
         // Setear nuevos valores
@@ -69,7 +72,18 @@ public class SvEditar extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Editar en base de datos
+        // Verificar si ya existe el apartamento, si no, crearlo
+        Apartamento aptoExistente = control.obtenerApartamentoPorTorreYApto(torre, apto);
+        if (aptoExistente == null) {
+            aptoExistente = new Apartamento();
+            aptoExistente.setTorre(torre);
+            aptoExistente.setApto(apto);
+            control.crearApartamento(aptoExistente);
+        }
+
+        usu.setApartamento(aptoExistente);
+
+        // Editar usuario en base de datos
         control.editarUsuario(usu);
 
         // Redirigir con lista actualizada

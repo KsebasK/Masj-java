@@ -18,8 +18,9 @@
         </ul>
         <h3>Gestión</h3>
         <ul>
-            <li><a href="mostrarUsuarios.jsp" class="<%= currentPage.contains("mostrarUsuarios.jsp") ? "active" : "" %>">
-                <i class="fas fa-users"></i><span>Usuarios</span></a></li>
+            <li><a href="<%=request.getContextPath()%>/SvUsuario" class="<%= currentPage.contains("mostrarUsuarios.jsp") ? "active" : "" %>">
+                  <i class="fas fa-users"></i><span>Usuarios</span></a></li>
+
             <li><a href="apartamentos.jsp" class="<%= currentPage.contains("apartamentos.jsp") ? "active" : "" %>">
                 <i class="fas fa-building"></i><span>Apartamentos</span></a></li>
             <li><a href="vehiculos.jsp" class="<%= currentPage.contains("vehiculos.jsp") ? "active" : "" %>">

@@ -69,8 +69,12 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "idApartamentos") // Esta columna SI necesitas agregarla a la tabla usuario
     private Apartamento apartamentos;
 
+    public void setApartamento(Apartamento aptoExistente) {
+     this.apartamentos = aptoExistente;
+    }
+
     public enum Rol {
-        propietario, guardia, administrador;
+        arrendatario, guardia, administrador;
 
         @Override
         public String toString() {
