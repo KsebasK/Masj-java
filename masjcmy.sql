@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2025 a las 06:42:42
+-- Tiempo de generación: 29-06-2025 a las 21:49:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -70,7 +70,9 @@ CREATE TABLE `apartamentos` (
 --
 
 INSERT INTO `apartamentos` (`idApartamentos`, `torre`, `apto`) VALUES
-(1, '1', '204');
+(1, '1', '204'),
+(2, '5', '101'),
+(3, '8', '205');
 
 -- --------------------------------------------------------
 
@@ -112,6 +114,13 @@ CREATE TABLE `residentes` (
   `idApartamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `residentes`
+--
+
+INSERT INTO `residentes` (`idResidente`, `idApartamento`) VALUES
+(6, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -141,8 +150,10 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idUsuario`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `NumeroCelular`, `CorreoElectronico`, `Contrasena`, `FechaNacimiento`, `Estado`, `Rol`, `TipoDocumento`, `NumDocumento`, `idApartamentos`) VALUES
 (1, 'sebastianB', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2006-07-28', 'activo', 'administrador', 'CC', 1234567089, 1),
-(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'activo', 'arrendatario', 'cedula', 1234567089, NULL),
-(4, 'karen', '', 'guzman', 'soto', '3208444442', 'karen@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'activo', 'administrador', 'cedula', 1234567089, 1);
+(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'activo', 'arrendatario', 'cedula', 1234567089, 3),
+(4, 'karen', '', 'guzman', 'soto', '3208444442', 'karen@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'activo', 'administrador', 'cedula', 1234567089, 1),
+(5, 'Andres', 'sapa', 'rana', 'su hermana', '3115741974', 'andres@gmail.com', '482970ad546fba00d2aabc3a00b5767e2ff3205d543c30cf372fb5bc45e5b798', '2004-10-12', 'activo', 'guardia', 'cedula', 1021393718, 2),
+(6, 'Andres', 'su mama', 'ess', 'puta', '3115741974', 'andres2@gmail.com', '08a3f97b0260bbb64451d97519a2adc9224a3c7966fe7b0d55f3be9f4a0287f9', '2004-10-12', 'activo', 'arrendatario', 'cedula', 1021393718, 3);
 
 -- --------------------------------------------------------
 
@@ -175,12 +186,18 @@ CREATE TABLE `visitante` (
   `ApellidosVisitante` varchar(40) NOT NULL,
   `TipoDocumento` varchar(10) NOT NULL,
   `NumDocumento` int(11) NOT NULL,
-  `idResidente` int(11) NOT NULL,
   `idGuardia` int(11) NOT NULL,
   `idApartamento` int(11) NOT NULL,
   `hora_entrada` time DEFAULT NULL,
   `hora_salida` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `visitante`
+--
+
+INSERT INTO `visitante` (`idVisitante`, `NombresVisitante`, `ApellidosVisitante`, `TipoDocumento`, `NumDocumento`, `idGuardia`, `idApartamento`, `hora_entrada`, `hora_salida`) VALUES
+(4, 'andres', 'martinez', 'CC', 1021393718, 5, 2, '19:37:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -262,7 +279,6 @@ ALTER TABLE `vehiculos`
 --
 ALTER TABLE `visitante`
   ADD PRIMARY KEY (`idVisitante`),
-  ADD KEY `idResidente` (`idResidente`),
   ADD KEY `idGuardia` (`idGuardia`),
   ADD KEY `idApartamento` (`idApartamento`);
 
@@ -292,7 +308,7 @@ ALTER TABLE `alquilerzonascomunes`
 -- AUTO_INCREMENT de la tabla `apartamentos`
 --
 ALTER TABLE `apartamentos`
-  MODIFY `idApartamentos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idApartamentos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `parqueadero`
@@ -310,7 +326,7 @@ ALTER TABLE `quejas`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
@@ -322,7 +338,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `visitante`
 --
 ALTER TABLE `visitante`
-  MODIFY `idVisitante` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idVisitante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `zonacomun`
@@ -375,7 +391,6 @@ ALTER TABLE `vehiculos`
 -- Filtros para la tabla `visitante`
 --
 ALTER TABLE `visitante`
-  ADD CONSTRAINT `visitante_ibfk_1` FOREIGN KEY (`idResidente`) REFERENCES `residentes` (`idResidente`),
   ADD CONSTRAINT `visitante_ibfk_2` FOREIGN KEY (`idGuardia`) REFERENCES `usuario` (`idUsuario`),
   ADD CONSTRAINT `visitante_ibfk_3` FOREIGN KEY (`idApartamento`) REFERENCES `apartamentos` (`idApartamentos`);
 COMMIT;
