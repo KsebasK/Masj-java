@@ -1,46 +1,37 @@
-
-   
-// También agrega estos métodos de apoyo:
 package logica;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import logica.Visitante;
-
 import persistencias.ControladoraPersistencia;
 
 public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
 
-    // Crear usuario
+    // ================= USUARIO =================
+
     public void crearUsuario(Usuario usu) {
         controlPersis.crearUsuario(usu);
     }
 
-    // Traer lista de usuarios
     public List<Usuario> traerUsuarios() {
         return controlPersis.traerUsuarios();
     }
 
-    // Eliminar usuario por ID
     public void borrarUsuario(int idEliminar) {
         controlPersis.borrarUsuario(idEliminar);
     }
 
-    // Traer un solo usuario por ID
     public Usuario traerUsuario(int idEditar) {
         return controlPersis.traerUsuario(idEditar);
     }
 
-    // Editar usuario
     public void editarUsuario(Usuario usu) {
         controlPersis.editarUsuario(usu);
     }
 
-    // Validar login
     public Usuario validarLogin(String correo, String contrasena) {
         List<Usuario> usuarios = controlPersis.traerUsuarios();
         for (Usuario u : usuarios) {
@@ -52,7 +43,6 @@ public class Controladora {
         return null;
     }
 
-    // Encriptar contraseña
     public static String encriptarSHA256(String texto) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -70,46 +60,45 @@ public class Controladora {
     // ================= APARTAMENTO =================
 
     public Apartamento buscarOCrearApartamento(String torre, String numeroApto) {
-        Apartamento apartamentoExistente = controlPersis.buscarApartamentoPorTorreYApto(torre, numeroApto);
-        if (apartamentoExistente != null) {
-            return apartamentoExistente;
+        Apartamento existente = controlPersis.buscarApartamentoPorTorreYApto(torre, numeroApto);
+        if (existente != null) {
+            return existente;
         } else {
-            Apartamento nuevoApartamento = new Apartamento();
-            nuevoApartamento.setTorre(torre);
-            nuevoApartamento.setApto(numeroApto);
-            controlPersis.crearApartamento(nuevoApartamento);
+            Apartamento nuevo = new Apartamento();
+            nuevo.setTorre(torre);
+            nuevo.setApto(numeroApto);
+            controlPersis.crearApartamento(nuevo);
             return controlPersis.buscarApartamentoPorTorreYApto(torre, numeroApto);
         }
+    }
+
+    public Apartamento obtenerApartamentoPorTorreYApto(String torre, String apto) {
+        return controlPersis.buscarApartamentoPorTorreYApto(torre, apto);
     }
 
     public List<Apartamento> traerApartamentos() {
         return controlPersis.traerApartamentos();
     }
 
-    public Apartamento buscarApartamentoPorTorreYApto(String torre, String apartamento) {
-        return controlPersis.buscarApartamentoPorTorreYApto(torre, apartamento);
-    }
-
     public void crearApartamento(Apartamento apt) {
         controlPersis.crearApartamento(apt);
     }
-    
-    public Apartamento obtenerApartamentoPorTorreYApto(String torre, String apto) {
-    return controlPersis.buscarApartamentoPorTorreYApto(torre, apto);
-}
-// ================= VISITANTE =================
 
-public void registrarVisitante(Visitante visitante) {
-    controlPersis.registrarVisitante(visitante);
-}
+    // ================= VISITANTE =================
 
-public List<Visitante> traerVisitantes() {
-    return controlPersis.traerVisitantes();
-}
+    public void registrarVisitante(Visitante visitante) {
+        controlPersis.registrarVisitante(visitante);
+    }
 
-public Visitante buscarVisitante(int id) {
-    return controlPersis.buscarVisitante(id);
-}
+    public List<Visitante> traerVisitantes() {
+        return controlPersis.traerVisitantes();
+    }
+
+    public Visitante buscarVisitante(int id) {
+        return controlPersis.buscarVisitante(id);
+    }
+
+    // Aquí puedes seguir agregando otros módulos como vehículos, zonas, quejas, etc.
 }
 
 
