@@ -14,26 +14,28 @@ import persistencia.exceptions.NonexistentEntityException;
 
 public class UsuarioJpaController implements Serializable {
 
+    private EntityManagerFactory emf = null;
+
+    public UsuarioJpaController() {
+        emf = Persistence.createEntityManagerFactory("PersisteUnitPU");
+    }
+
     public UsuarioJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public UsuarioJpaController() {
-        emf = Persistence.createEntityManagerFactory("PersisteUnitPU");
-    }
-    
+    // ==================== CREATE ====================
     public void create(Usuario usuario) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(usuario);
+            em.flush(); // <<<<<< NECESARIO para obtener el ID generado inmediatamente
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -42,6 +44,7 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
+    // ==================== EDIT ====================
     public void edit(Usuario usuario) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -62,6 +65,7 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
+    // ==================== DELETE ====================
     public void destroy(int id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -83,6 +87,7 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
+    // ==================== READ ====================
     public List<Usuario> findUsuarioEntities() {
         return findUsuarioEntities(true, -1, -1);
     }

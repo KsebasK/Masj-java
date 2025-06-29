@@ -98,23 +98,19 @@ public class Controladora {
         return controlPersis.buscarVisitante(id);
     }
 
-    // Aquí puedes seguir agregando otros módulos como vehículos, zonas, quejas, etc.
+    // NO BORRAR ECHO POR SEBASTIAN PARA VALIDAR QUE LOS USUARIOS CON EL ROL RESIDENTE DE UNA VEZ SE VAYAN A LA TABLA RESIDENTE
+    public Usuario traerUsuarioPorCorreo(String correo) {
+    return controlPersis.traerUsuarioPorCorreo(correo);
+    }
+
+    public void asignarUsuarioComoResidente(Usuario usuario, Apartamento apto) {
+    Residente residente = new Residente();
+    residente.setIdResidente(usuario.getIdUsuario());
+    residente.setUsuario(usuario);
+    residente.setApartamento(apto);
+    controlPersis.crearResidente(residente);
+    }
+
+    
 }
-
-
-//     public List<Apartamento> traerApartamentos() {
-//         throw new UnsupportedOperationException("Not supported yet.");
-//     }
-
-//     public Apartamento buscarApartamentoPorTorreYApto(String torre, String apartamento) {
-//         throw new UnsupportedOperationException("Not supported yet.");
-//     }
-
-//     public void crearApartamento(Apartamento apt) {
-//         throw new UnsupportedOperationException("Not supported yet.");
-//     }
-
-//     public void crearResidente(Residente residente) {
-//         throw new UnsupportedOperationException("Not supported yet.");
-//     }
 
