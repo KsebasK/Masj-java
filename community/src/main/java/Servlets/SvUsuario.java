@@ -52,14 +52,13 @@ public class SvUsuario extends HttpServlet {
             String rol = request.getParameter("rol");
             String tipoDocumento = request.getParameter("tipoDocumento");
             int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
-            
+
             // Datos del apartamento
             String torre = request.getParameter("torre");
             String numeroApto = request.getParameter("apartamento");
 
             // Crear nuevo usuario
             Usuario usu = new Usuario();
-
             usu.setPrimerNombre(primerNombre);
             usu.setSegundoNombre(segundoNombre);
             usu.setPrimerApellido(primerApellido);
@@ -81,19 +80,24 @@ public class SvUsuario extends HttpServlet {
             usu.setRol(Usuario.Rol.valueOf(rol));
             usu.setTipoDocumento(tipoDocumento);
             usu.setNumDocumento(numDocumento);
-            
-            // BUSCAR O CREAR EL APARTAMENTO
+
+            // Buscar o crear el apartamento
             Apartamento apartamentos = control.buscarOCrearApartamento(torre, numeroApto);
             usu.setApartamentos(apartamentos);
 
-            // GUARDAR EL USUARIO EN LA BASE DE DATOS
+            // Guardar el usuario (el ID ya estará disponible por em.flush())
             control.crearUsuario(usu);
 
-            // Mensaje de éxito en la sesión
+            // Si es arrendatario, registrar en residentes
+            if (usu.getRol() == Usuario.Rol.arrendatario) {
+                control.asignarUsuarioComoResidente(usu, apartamentos);
+            }
+
+            // Mensaje de éxito
             HttpSession sesion = request.getSession();
             sesion.setAttribute("mensajeExito", "Usuario registrado exitosamente. Ahora puedes iniciar sesión.");
 
-            // REDIRIGIR AL LOGIN
+            // Redirigir
             response.sendRedirect("login.jsp");
 
         } catch (NumberFormatException e) {
@@ -111,6 +115,5 @@ public class SvUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Servlet para registrar y listar usuarios con apartamentos";
     }
-    
 
 }

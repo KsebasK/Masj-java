@@ -1,6 +1,8 @@
 logica\Usuario$Rol.class
+persistencias\QuejaAdminJpaController.class
 logica\Usuario.class
 com\masj\community\resources\JavaEE8Resource.class
+logica\QuejaAdmin.class
 persistencias\exceptions\IllegalOrphanException.class
 Servlets\exceptions\PreexistingEntityException.class
 logica\Residente.class

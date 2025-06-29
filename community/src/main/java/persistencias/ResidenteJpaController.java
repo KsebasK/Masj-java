@@ -16,17 +16,20 @@ public class ResidenteJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Residente residente) {
-        EntityManager em = getEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(residente);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
+   public void create(Residente residente) {
+    EntityManager em = getEntityManager();
+    try {
+        em.getTransaction().begin();
+        em.persist(residente);
+        em.flush(); // Asegura sincronización con DB (opcional pero útil)
+        em.getTransaction().commit();
+    } catch (Exception e) {
+        if (em.getTransaction().isActive()) em.getTransaction().rollback();
+        throw new RuntimeException("Error al guardar residente: " + e.getMessage());
+    } finally {
+        em.close();
     }
-
+}
     public void edit(Residente residente) throws Exception {
         EntityManager em = getEntityManager();
         try {

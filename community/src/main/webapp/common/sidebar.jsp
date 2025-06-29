@@ -38,7 +38,7 @@
         <ul>
             <li><a href="ajustes.jsp" class="<%= currentPage.contains("ajustes.jsp") ? "active" : "" %>">
                 <i class="fas fa-cog"></i><span>Ajustes</span></a></li>
-            <li><a href="logout.jsp" class="<%= currentPage.contains("logout.jsp") ? "active" : "" %>">
+            <li><a href="login.jsp" class="<%= currentPage.contains("login.jsp") ? "active" : "" %>">
                 <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
         </ul>
     </div>

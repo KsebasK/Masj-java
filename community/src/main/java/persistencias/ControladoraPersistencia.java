@@ -13,6 +13,9 @@ import logica.Usuario;
 import logica.Visitante;
 import persistencia.exceptions.NonexistentEntityException;
 
+import logica.QuejaAdmin;
+import logica.Residente;
+
 public class ControladoraPersistencia {
 
     // Crear EntityManagerFactory desde persistence.xml
@@ -21,7 +24,7 @@ public class ControladoraPersistencia {
     // Inyectar emf al JpaController
     UsuarioJpaController usuJpa = new UsuarioJpaController(emf);
     VisitanteJpaController visitanteJpa = new VisitanteJpaController(emf);
-
+     QuejaAdminJpaController quejaJpa = new QuejaAdminJpaController(emf);
     // ================= USUARIO =================
 
     // CREATE
@@ -135,4 +138,67 @@ public class ControladoraPersistencia {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
+   
+    // ================= QUEJA =================
+
+public void crearQueja(QuejaAdmin queja) {
+    quejaJpa.create(queja);
+}
+
+public List<QuejaAdmin> traerQuejas() {
+    return quejaJpa.findQuejaAdminEntities();
+}
+
+public QuejaAdmin buscarQueja(int id) {
+    return quejaJpa.findQuejaAdmin(id);
+}
+
+public void borrarQueja(int id) {
+    try {
+        quejaJpa.destroy(id);
+    } catch (Exception e) {
+        Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, e);
+    }
+}
+
+public void editarQueja(QuejaAdmin queja) {
+    try {
+        quejaJpa.edit(queja);
+    } catch (Exception e) {
+        Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, e);
+    }
+}
+
+
+//NO BORRAR SEBASTIAN ACA PUSO PARA QUE LOS REGISTRADOS EN ARRENDATARIOS DE UNA VEZ SE VAYAN A TABLA RESIDENTES
+
+public Usuario traerUsuarioPorCorreo(String correo) {
+    EntityManager em = emf.createEntityManager();
+    try {
+        return em.createQuery("SELECT u FROM Usuario u WHERE u.correoElectronico = :correo", Usuario.class)
+                 .setParameter("correo", correo)
+                 .getSingleResult();
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    } finally {
+        em.close();
+    }
+}
+
+public void crearResidente(Residente residente) {
+    EntityManager em = emf.createEntityManager();
+    try {
+        em.getTransaction().begin();
+        em.persist(residente);
+        em.getTransaction().commit();
+    } catch (Exception e) {
+        if (em.getTransaction().isActive()) em.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        em.close();
+    }
+}
+
 }
