@@ -15,7 +15,7 @@
     <div class="sidebar-menu">
         <h3>Principal</h3>
         <ul>
-            <li><a href="admin.jsp" class="<%= currentPage.contains("admin.jsp") ? "active" : "" %>">
+            <li><a href="guardia.jsp" class="<%= currentPage.contains("guardia.jsp") ? "active" : "" %>">
                 <i class="fas fa-home"></i><span>Dashboard</span></a></li>
             <li><a href="estadisticas.jsp" class="<%= currentPage.contains("estadisticas.jsp") ? "active" : "" %>">
                 <i class="fas fa-chart-line"></i><span>Estadísticas</span></a></li>
@@ -31,7 +31,7 @@
                 <i class="fas fa-building"></i><span>Apartamentos</span></a></li>
             <li><a href="vehiculos.jsp" class="<%= currentPage.contains("vehiculos.jsp") ? "active" : "" %>">
                 <i class="fas fa-car"></i><span>Vehículos</span></a></li>
-            <li><a href="visitantes.jsp" class="<%= currentPage.contains("visitantes.jsp") ? "active" : "" %>">
+            <li><a href="registrarVisitante.jsp" class="<%= currentPage.contains("registrarVisitante.jsp") ? "active" : "" %>">
                 <i class="fas fa-user-friends"></i><span>Visitantes</span></a></li>
             <li><a href="zonas.jsp" class="<%= currentPage.contains("zonas.jsp") ? "active" : "" %>">
                 <i class="fas fa-swimming-pool"></i><span>Zonas Comunes</span></a></li>

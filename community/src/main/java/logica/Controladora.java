@@ -111,6 +111,14 @@ public class Controladora {
     controlPersis.crearResidente(residente);
     }
 
+    public List<Residente> traerResidentes() {
+    return controlPersis.traerResidentes();
+}
+
+    public Usuario obtenerUsuarioPorApartamento(Apartamento apartamento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }
 
