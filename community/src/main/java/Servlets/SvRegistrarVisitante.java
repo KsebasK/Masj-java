@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
 package Servlets;
 
 import java.io.IOException;
@@ -10,41 +5,66 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
 import logica.Controladora;
+import logica.Apartamento;
+import logica.Usuario;
 import logica.Visitante;
 
 @WebServlet(name = "SvRegistrarVisitante", urlPatterns = {"/SvRegistrarVisitante"})
 public class SvRegistrarVisitante extends HttpServlet {
 
+    Controladora control = new Controladora();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
 
         // Obtener datos del formulario
         String nombres = request.getParameter("nombres");
         String apellidos = request.getParameter("apellidos");
         String tipoDoc = request.getParameter("tipoDoc");
         int numDoc = Integer.parseInt(request.getParameter("numDoc"));
-        int idResidente = Integer.parseInt(request.getParameter("idResidente"));
+        String torre = request.getParameter("torre");
+        String numeroApto = request.getParameter("numeroApto");
         int idGuardia = Integer.parseInt(request.getParameter("idGuardia"));
-        int idApartamento = Integer.parseInt(request.getParameter("idApartamento"));
 
-        // Crear objeto Visitante
+        // Buscar el apartamento por torre y apto
+        Apartamento apto = control.obtenerApartamentoPorTorreYApto(torre, numeroApto);
+
+        if (apto == null) {
+            request.setAttribute("error", "El apartamento " + torre + " - " + numeroApto + " no existe.");
+            request.getRequestDispatcher("registrarVisitante.jsp").forward(request, response);
+            return;
+        }
+
+        // Validar que el guardia exista
+        Usuario guardia = control.traerUsuario(idGuardia);
+        if (guardia == null || !"guardia".equalsIgnoreCase(guardia.getRol().name())) {
+            request.setAttribute("error", "El ID de guardia es inválido.");
+            request.getRequestDispatcher("registrarVisitante.jsp").forward(request, response);
+            return;
+        }
+
+        // Crear el visitante
         Visitante visitante = new Visitante();
         visitante.setNombresVisitante(nombres);
         visitante.setApellidosVisitante(apellidos);
         visitante.setTipoDocumento(tipoDoc);
         visitante.setNumDocumento(numDoc);
-        visitante.setIdResidente(idResidente);
         visitante.setIdGuardia(idGuardia);
-        visitante.setIdApartamento(idApartamento);
-        visitante.setHoraEntrada(new Date()); // hora actual
+        visitante.setIdApartamento(apto.getIdApartamento());
+        visitante.setHoraEntrada(new Date());
 
-        // Usar la lógica para guardar en la BD
-        Controladora control = new Controladora();
+        // Registrar visitante
         control.registrarVisitante(visitante);
 
-        // Redireccionar o mostrar mensaje
-        response.sendRedirect("guardia.jsp"); // o la página que prefieras
+        // Enviar mensaje de éxito
+        request.setAttribute("exito", "¡Visitante registrado con éxito!");
+        request.getRequestDispatcher("registrarVisitante.jsp").forward(request, response);
     }
 }
+
+

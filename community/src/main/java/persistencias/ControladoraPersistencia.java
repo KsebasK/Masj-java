@@ -201,4 +201,13 @@ public void crearResidente(Residente residente) {
     }
 }
 
+public List<Residente> traerResidentes() {
+    EntityManager em = emf.createEntityManager();
+    try {
+        return em.createQuery("SELECT r FROM Residente r", Residente.class).getResultList();
+    } finally {
+        em.close();
+    }
+}
+
 }
