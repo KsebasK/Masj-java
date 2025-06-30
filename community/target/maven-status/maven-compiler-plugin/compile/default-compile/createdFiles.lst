@@ -8,6 +8,7 @@ logica\QuejaAdmin.class
 persistencias\exceptions\IllegalOrphanException.class
 Servlets\exceptions\PreexistingEntityException.class
 logica\Residente.class
+Servlets\SvExportarExcel.class
 logica\Visitante.class
 persistencias\ControladoraPersistencia.class
 Servlets\SvLogin.class

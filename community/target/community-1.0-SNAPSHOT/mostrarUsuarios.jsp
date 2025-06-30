@@ -93,7 +93,12 @@
         </div>
         <div class="card-body">
             <% if (listaUsuarios != null && !listaUsuarios.isEmpty()) { %>
-                <div class="table-responsive">
+             <form action="SvExportarExcel" method="GET">
+                <button type="submit" class="btn btn-success mb-3">
+                    <i class="fas fa-file-excel"></i> Exportar a Excel
+                </button>
+            </form>
+            <div class="table-responsive">
                     <table class="table table-hover table-bordered align-middle table-custom">
                         <thead>
                             <tr>
