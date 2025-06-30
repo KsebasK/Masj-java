@@ -45,7 +45,7 @@ public class SvLogin extends HttpServlet {
                         response.sendRedirect("guardia.jsp");
                         break;
                     case "arrendatario":
-                        response.sendRedirect("arrendatario.jsp");
+                        response.sendRedirect("residente.jsp");
                         break;
                     default:
                         request.setAttribute("error", "Rol desconocido.");
