@@ -1,3 +1,9 @@
+ * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
 body {
   background-color: #120118;
   display: flex;
@@ -546,3 +552,5 @@ background-color: rgba(5, 221, 5, 0.589);
 #number {
     transform: translate(0.3em);
 }
+
+
