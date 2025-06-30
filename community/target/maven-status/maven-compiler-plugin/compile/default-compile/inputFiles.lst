@@ -3,6 +3,7 @@ C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\QuejaAdminJpaCon
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\UsuarioJpaController.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Residente.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\VisitanteJpaController.java
+C:\xampp\htdocs\Masj-java\community\src\main\java\logica\AlquilerZonasComunesService.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\AlquilerZonasComunes.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencia\exceptions\PreexistingEntityException.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\SvReservasResidente.java
@@ -16,6 +17,7 @@ C:\xampp\htdocs\Masj-java\community\src\main\java\com\masj\community\JAXRSConfig
 C:\xampp\htdocs\Masj-java\community\src\main\java\com\masj\community\resources\JavaEE8Resource.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\ResidenteJpaController.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\QuejaAdmin.java
+C:\xampp\htdocs\Masj-java\community\src\main\java\logica\AlquilerZonasComunesEntity.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\exceptions\PreexistingEntityException.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Visitante.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Controladora.java
@@ -26,8 +28,10 @@ C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\AlquilerZonasCom
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Apartamento.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\exceptions\NonexistentEntityException.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\exceptions\IllegalOrphanException.java
+C:\xampp\htdocs\Masj-java\community\src\main\java\logica\ZonaComun.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Usuario.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\SvLogin.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\SvEditar.java
+C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\SvReservarZona.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencia\exceptions\NonexistentEntityException.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\SvUsuario.java

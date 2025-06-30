@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    --sun-yellow: #f9e900;
+    --sun-orange: #000000;
+    --sun-red: #ed4c40;
+    --sun-purple: #7b2d56;
+    --sun-dark-purple: #4c0b3c;
+    --primary: var(--sun-orange);
+    --secondary: var(--sun-purple);
+    --accent: var(--sun-yellow);
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+    --white: #ffffff;
+}
+
+body {
+    background-color: #f5f7fa;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+}
+
+.sidebar {
+    width: 280px;
+    background: var(--dark);
+    color: var(--white);
+    position: fixed;
+    height: 100vh;
+    overflow: auto;
+}
+
+.main-content {
+    margin-left: 280px;
+    padding: 30px;
+    flex: 1;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table thead th {
+    background-color: var(--secondary);
+    color: var(--white);
+    padding: 10px;
+    text-align: left;
+}
+
+table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:hover {
+    background-color: var(--accent);
+    color: var(--dark);
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+form button:hover {
+    background: var(--accent);
+    color: var(--dark);
+}
+
+.sidebar-menu li a.active {
+    background: rgba(255, 255, 255, 0.1);
+}

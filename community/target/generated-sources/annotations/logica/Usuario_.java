@@ -8,7 +8,7 @@ import logica.Apartamento;
 import logica.Usuario.Estado;
 import logica.Usuario.Rol;
 
-@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2025-06-29T20:26:09")
+@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2025-06-30T02:30:47")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
