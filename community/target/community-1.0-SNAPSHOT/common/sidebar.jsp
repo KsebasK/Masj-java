@@ -21,9 +21,9 @@
             <li><a href="<%=request.getContextPath()%>/SvUsuario" class="<%= currentPage.contains("mostrarUsuarios.jsp") ? "active" : "" %>">
                   <i class="fas fa-users"></i><span>Usuarios</span></a></li>
 
-            <li><a href="apartamentos.jsp" class="<%= currentPage.contains("apartamentos.jsp") ? "active" : "" %>">
-                <i class="fas fa-building"></i><span>Apartamentos</span></a></li>
-            <li><a href="vehiculos.jsp" class="<%= currentPage.contains("vehiculos.jsp") ? "active" : "" %>">
+              <li><a href="<%=request.getContextPath()%>/SvResidentesAdmin" class="<%= currentPage.contains("mostrarResidentes.jsp") ? "active" : "" %>">
+            <i class="fas fa-building"></i><span>Apartamentos</span></a></li>
+             <li><a href="vehiculos.jsp" class="<%= currentPage.contains("vehiculos.jsp") ? "active" : "" %>">
                 <i class="fas fa-car"></i><span>Vehículos</span></a></li>
             <li><a href="visitantes.jsp" class="<%= currentPage.contains("visitantes.jsp") ? "active" : "" %>">
                 <i class="fas fa-user-friends"></i><span>Visitantes</span></a></li>
@@ -34,8 +34,7 @@
             <li><a href="quejas.jsp" class="<%= currentPage.contains("quejas.jsp") ? "active" : "" %>">
                 <i class="fas fa-comment-alt"></i><span>Quejas</span></a></li>
         </ul>
-                
-                
+                  
         <h3>Configuración</h3>
         <ul>
             <li><a href="ajustes.jsp" class="<%= currentPage.contains("ajustes.jsp") ? "active" : "" %>">

@@ -9,24 +9,18 @@ public class Residente implements Serializable {
 
     @Id
     @Column(name = "idResidente")
-    private int idResidente; // Mismo que idUsuario
+    private int idResidente;
 
     @OneToOne
-    @JoinColumn(name = "idResidente", referencedColumnName = "idUsuario", insertable = false, updatable = false)
+    @MapsId
+    @JoinColumn(name = "idResidente")
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "idApartamento")
     private Apartamento apartamento;
 
-    public Residente() {}
-
-    public Residente(int idResidente, Usuario usuario, Apartamento apartamento) {
-        this.idResidente = idResidente;
-        this.usuario = usuario;
-        this.apartamento = apartamento;
-    }
-
+    // Getters y setters
     public int getIdResidente() {
         return idResidente;
     }
