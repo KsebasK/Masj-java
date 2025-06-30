@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="Styles/admin.css">
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
     <style>
@@ -69,7 +70,10 @@
     </style>
 </head>
 <body>
-
+<%@include file="common/sidebar.jsp" %>
+<%@include file="common/header.jsp" %>
+<div class="main-content">
+    <div class="content">
 <h2>Editar Información del Usuario</h2>
 
 <form action="SvEditar" method="POST">
@@ -114,14 +118,11 @@
     <label>Rol:</label>
     <select name="rol" required>
         <option disabled selected value="">Seleccione un rol</option>
-        <option value="propietario" <%= "propietario".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Propietario</option>
-        <option value="administrador" <%= "administrador".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Administrador</option>
-        <option value="guardia" <%= "guardia".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Guardia</option>
-        <option value="arrendatario" <%= "arrendatario".equals(usuEditar.getRol().toString()) ? "selected" : "" %>>Arrendatario</option>
+        <option value="administrador" <%= "administrador".equals(usuEditar.getRol()) ? "selected" : "" %>>Administrador</option>
+        <option value="guardia" <%= "guardia".equals(usuEditar.getRol()) ? "selected" : "" %>>Guardia</option>
+        <option value="arrendatario" <%= "arrendatario".equals(usuEditar.getRol()) ? "selected" : "" %>>Arrendatario</option>
+        <option value="inactivo" <%= "inactivo".equals(usuEditar.getRol()) ? "selected" : "" %>>Inactivo</option>
     </select>
-
-    <label>Estado:</label>
-    <input type="text" name="estado" value="<%= usuEditar.getEstado().toString() %>" required>
 
     <label>Torre:</label>
     <input type="text" name="torre" value="<%= usuEditar.getApartamento() != null ? usuEditar.getApartamento().getTorre() : "" %>" required>
@@ -136,6 +137,7 @@
 <div class="volver">
     <a href="SvUsuario">← Volver a la lista</a>
 </div>
-
+    </div>
+</div>
 </body>
 </html>
