@@ -27,7 +27,7 @@
     <%@include file="common/sidebarGuardia.jsp" %>
     <%@include file="common/header.jsp" %>
      <div class="main-content">
-     <div class="content">
+     <div class="content"> 
     <div class="contenedor">
         <h1>Bienvenido Guardia</h1>
         <p>Aquí puedes registrar visitantes, verificar vehículos y reportar incidentes.</p>
