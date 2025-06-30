@@ -16,7 +16,7 @@ import logica.Apartamento;
 import logica.Controladora;
 import logica.Usuario;
 
-@WebServlet(name = "SvUsuario", urlPatterns = {"/SvUsuario"})
+@WebServlet(name = "SvUsuario", urlPatterns = { "/SvUsuario" })
 public class SvUsuario extends HttpServlet {
 
     Controladora control = new Controladora();
@@ -103,10 +103,12 @@ public class SvUsuario extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("error", "Número de documento inválido");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error al registrar usuario: " + e.getMessage());
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+        catch (Exception e) {
+        e.printStackTrace();
+        request.setAttribute("error", "Error al registrar usuario: " +
+        e.getMessage());
+        request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
