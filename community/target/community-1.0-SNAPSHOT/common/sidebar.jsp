@@ -34,10 +34,12 @@
             <li><a href="quejas.jsp" class="<%= currentPage.contains("quejas.jsp") ? "active" : "" %>">
                 <i class="fas fa-comment-alt"></i><span>Quejas</span></a></li>
         </ul>
+                
+                
         <h3>Configuración</h3>
         <ul>
             <li><a href="ajustes.jsp" class="<%= currentPage.contains("ajustes.jsp") ? "active" : "" %>">
-                <i class="fas fa-cog"></i><span>Ajustes</span></a></li>
+                <i  class="fas fa-cog"></i><span>Ajustes</span></a></li>
             <li><a href="login.jsp" class="<%= currentPage.contains("login.jsp") ? "active" : "" %>">
                 <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
         </ul>
