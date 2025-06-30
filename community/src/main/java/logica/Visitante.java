@@ -28,9 +28,7 @@ public class Visitante implements Serializable {
     @Column(name = "NumDocumento")
     private int numDocumento;
 
-    @Column(name = "idResidente")
-    private int idResidente;
-
+   
     @Column(name = "idGuardia")
     private int idGuardia;
 
@@ -41,7 +39,7 @@ public class Visitante implements Serializable {
     @Column(name = "hora_entrada")
     private Date horaEntrada;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)   
     @Column(name = "hora_salida")
     private Date horaSalida;
 
@@ -61,9 +59,6 @@ public class Visitante implements Serializable {
 
     public int getNumDocumento() { return numDocumento; }
     public void setNumDocumento(int numDocumento) { this.numDocumento = numDocumento; }
-
-    public int getIdResidente() { return idResidente; }
-    public void setIdResidente(int idResidente) { this.idResidente = idResidente; }
 
     public int getIdGuardia() { return idGuardia; }
     public void setIdGuardia(int idGuardia) { this.idGuardia = idGuardia; }

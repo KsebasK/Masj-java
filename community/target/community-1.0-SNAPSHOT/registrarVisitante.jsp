@@ -17,7 +17,7 @@
             margin-bottom: 25px;
         }
 
-        form {
+        .form-container {
             background-color: #2e2e3e;
             padding: 20px;
             border-radius: 12px;
@@ -54,43 +54,68 @@
         button:hover {
             background-color: #7b68ee;
         }
+
+        .error {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .exito {
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <<link rel="stylesheet" href="Styles/admin.css">
+    <link rel="stylesheet" href="Styles/admin.css">
     <%@include file="common/sidebarGuardia.jsp" %>
     <%@include file="common/header.jsp" %>
+
     <h2>Registrar Nuevo Visitante</h2>
 
-    <form action="SvRegistrarVisitante" method="post">
-        <label for="nombres">Nombres:</label>
-        <input type="text" id="nombres" name="nombres" required>
+    <div class="form-container">
 
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" name="apellidos" required>
+        <%-- Mostrar mensaje de error si existe --%>
+        <% if (request.getAttribute("error") != null) { %>
+            <div class="error"><%= request.getAttribute("error") %></div>
+        <% } %>
 
-        <label for="tipoDoc">Tipo de Documento:</label>
-        <select id="tipoDoc" name="tipoDoc" required>
-            <option value="">Seleccione...</option>
-            <option value="CC">Cédula de Ciudadanía</option>
-            <option value="TI">Tarjeta de Identidad</option>
-            <option value="CE">Cédula de Extranjería</option>
-        </select>
+        <%-- Mostrar mensaje de éxito si existe --%>
+        <% if (request.getAttribute("exito") != null) { %>
+            <div class="exito"><%= request.getAttribute("exito") %></div>
+        <% } %>
 
-        <label for="numDoc">Número de Documento:</label>
-        <input type="number" id="numDoc" name="numDoc" required>
+        <form action="SvRegistrarVisitante" method="post">
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" name="nombres" required>
 
-        <label for="idResidente">ID del Residente:</label>
-        <input type="number" id="idResidente" name="idResidente" required>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required>
 
-        <label for="idGuardia">ID del Guardia:</label>
-        <input type="number" id="idGuardia" name="idGuardia" required>
+            <label for="tipoDoc">Tipo de Documento:</label>
+            <select id="tipoDoc" name="tipoDoc" required>
+                <option value="">Seleccione...</option>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="TI">Tarjeta de Identidad</option>
+                <option value="CE">Cédula de Extranjería</option>
+            </select>
 
-        <label for="idApartamento">ID del Apartamento:</label>
-        <input type="number" id="idApartamento" name="idApartamento" required>
+            <label for="numDoc">Número de Documento:</label>
+            <input type="number" id="numDoc" name="numDoc" required>
 
-        <button type="submit">Registrar Visitante</button>
-    </form>
+            <label for="torre">Torre:</label>
+            <input type="text" id="torre" name="torre" required>
 
+            <label for="numeroApto">Número de Apartamento:</label>
+            <input type="text" id="numeroApto" name="numeroApto" required>
+
+            <label for="idGuardia">ID del Guardia:</label>
+            <input type="number" id="idGuardia" name="idGuardia" required>
+
+            <button type="submit">Registrar Visitante</button>
+        </form>
+    </div>
 </body>
 </html>
