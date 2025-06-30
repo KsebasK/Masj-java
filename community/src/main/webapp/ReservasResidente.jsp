@@ -67,6 +67,7 @@
 
             <label>Total Pago:</label>
             <input type="number" name="totalPago" min="0" required><br><br>
+            
 
             <button type="submit" class="btn btn-primary">Reservar</button>
         </form>

@@ -5,17 +5,15 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import logica.Apartamento;
-import logica.Usuario.Estado;
 import logica.Usuario.Rol;
 
-@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2025-06-30T02:30:47")
+@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2025-06-30T15:54:33")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
     public static volatile SingularAttribute<Usuario, String> numeroCelular;
     public static volatile SingularAttribute<Usuario, Integer> numDocumento;
     public static volatile SingularAttribute<Usuario, String> segundoNombre;
-    public static volatile SingularAttribute<Usuario, Estado> estado;
     public static volatile SingularAttribute<Usuario, String> primerNombre;
     public static volatile SingularAttribute<Usuario, String> primerApellido;
     public static volatile SingularAttribute<Usuario, Date> fechaNacimiento;

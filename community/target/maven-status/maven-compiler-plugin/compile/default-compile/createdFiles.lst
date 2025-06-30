@@ -39,7 +39,6 @@ logica\Controladora.class
 logica\Usuario_.class
 Servlets\SvEditar.class
 Servlets\SvRegistrarVisitante.class
-logica\Usuario$Estado.class
 logica\Visitante_.class
 Servlets\SvReservarZona.class
 persistencias\ApartamentoJpaController.class

@@ -831,3 +831,28 @@ h2:after {
     color: #111;
     font-weight: bold;
 }
+
+/* --- MODIFICACIONES PARA CENTRAR FORMULARIO --- */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrado horizontal */
+    justify-content: flex-start; /* Alineación arriba */
+    min-height: calc(100vh - 60px);
+    padding-top: 40px; /* Espacio superior */
+}
+
+.content {
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para el contenido */
+}
+
+/* Ajustes específicos para el formulario de reservas */
+form {
+    margin: 30px auto; /* Centrado con margen superior */
+    padding: 30px;
+    background: var(--sun-purple);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px; /* Ancho controlado */
+}
