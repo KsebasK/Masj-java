@@ -2,25 +2,18 @@ package persistencias;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import logica.AlquilerZonasComunes;
+import javax.persistence.*;
+import logica.AlquilerZonasComunesEntity;
 
 public class AlquilerZonasComunesJpaController implements Serializable {
 
-    private EntityManagerFactory emf = null;
-
-    public AlquilerZonasComunesJpaController() {
-        this.emf = Persistence.createEntityManagerFactory("communityPU");
-    }
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("communityPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public void create(AlquilerZonasComunes reserva) {
+    public void create(AlquilerZonasComunesEntity reserva) {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
@@ -33,12 +26,13 @@ public class AlquilerZonasComunesJpaController implements Serializable {
         }
     }
 
-    public List<AlquilerZonasComunes> traerReservasPorResidente(int idResidente) {
+    public List<AlquilerZonasComunesEntity> traerReservasPorResidente(int idResidente) {
         EntityManager em = getEntityManager();
         try {
-            TypedQuery<AlquilerZonasComunes> query = em.createQuery(
-                    "SELECT a FROM AlquilerZonasComunes a WHERE a.idResidente.idResidente = :idResidente",
-                    AlquilerZonasComunes.class);
+            TypedQuery<AlquilerZonasComunesEntity> query = em.createQuery(
+                "SELECT a FROM AlquilerZonasComunesEntity a WHERE a.residente.idResidente = :idResidente",
+                AlquilerZonasComunesEntity.class
+            );
             query.setParameter("idResidente", idResidente);
             return query.getResultList();
         } finally {
@@ -47,5 +41,4 @@ public class AlquilerZonasComunesJpaController implements Serializable {
             }
         }
     }
-
 }

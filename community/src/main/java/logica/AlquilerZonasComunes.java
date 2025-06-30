@@ -7,11 +7,17 @@ public class AlquilerZonasComunes {
 
     private AlquilerZonasComunesJpaController zonasJpa = new AlquilerZonasComunesJpaController();
 
-    public List<logica.AlquilerZonasComunes> obtenerReservasPorResidente(int idResidente) {
+    // Cambiado para devolver lista de entidades
+    public List<AlquilerZonasComunesEntity> obtenerReservasPorResidente(int idResidente) {
         return zonasJpa.traerReservasPorResidente(idResidente);
     }
 
+    // Cambiado para recibir la entidad directamente
+    public void crearReserva(AlquilerZonasComunesEntity reserva) {
+        zonasJpa.create(reserva);
+    }
+
     public AlquilerZonasComunes() {
-        // Constructor vacío necesario para Apache
+        // Constructor vacío
     }
 }
