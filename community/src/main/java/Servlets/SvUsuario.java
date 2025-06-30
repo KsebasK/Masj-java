@@ -76,7 +76,6 @@ public class SvUsuario extends HttpServlet {
             usu.setFechaNacimiento(fecha);
 
             // Configurar otros campos
-            usu.setEstado(Usuario.Estado.activo);
             usu.setRol(Usuario.Rol.valueOf(rol));
             usu.setTipoDocumento(tipoDocumento);
             usu.setNumDocumento(numDocumento);

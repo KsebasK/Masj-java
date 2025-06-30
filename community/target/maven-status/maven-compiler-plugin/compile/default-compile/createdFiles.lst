@@ -29,7 +29,6 @@ Servlets\SvReservasResidente.class
 logica\Controladora.class
 Servlets\SvEditar.class
 Servlets\SvRegistrarVisitante.class
-logica\Usuario$Estado.class
 persistencias\ApartamentoJpaController.class
 persistencias\exceptions\PreexistingEntityException.class
 persistencia\exceptions\NonexistentEntityException.class

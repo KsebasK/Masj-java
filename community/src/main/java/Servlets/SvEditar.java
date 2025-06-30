@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
 import logica.Apartamento;
 import logica.Controladora;
 import logica.Usuario;
@@ -41,7 +42,6 @@ public class SvEditar extends HttpServlet {
         String numeroCelular = request.getParameter("numeroCelular");
         String correo = request.getParameter("correoElectronico");
         String fechaNacimiento = request.getParameter("fechaNacimiento");
-        String estado = request.getParameter("estado");
         String rol = request.getParameter("rol");
         String tipoDocumento = request.getParameter("tipoDocumento");
         int numDocumento = Integer.parseInt(request.getParameter("numDocumento"));
@@ -59,8 +59,7 @@ public class SvEditar extends HttpServlet {
         usu.setSegundoApellido(segundoApellido);
         usu.setNumeroCelular(numeroCelular);
         usu.setCorreoElectronico(correo);
-        usu.setEstado(Usuario.Estado.valueOf(estado));
-        usu.setRol(Usuario.Rol.valueOf(rol));
+        usu.setRol(Usuario.Rol.valueOf(rol)); // Aquí asumimos que el rol existe en el enum
         usu.setTipoDocumento(tipoDocumento);
         usu.setNumDocumento(numDocumento);
 

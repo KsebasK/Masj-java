@@ -28,33 +28,32 @@ public class SvLogin extends HttpServlet {
         Usuario usu = control.validarLogin(correo, passEncriptada);
 
         if (usu != null) {
-            if (usu.getEstado().toString().equalsIgnoreCase("activo")) {
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("usuario", usu);
+            String rol = usu.getRol().toString().toLowerCase();
 
-                String rol = usu.getRol().toString().toLowerCase();
-
-                switch (rol) {
-                    case "administrador":
-                        response.sendRedirect("admin.jsp");
-                        break;
-                    case "propietario":
-                        response.sendRedirect("residente.jsp");
-                        break;
-                    case "guardia":
-                        response.sendRedirect("guardia.jsp");
-                        break;
-                    case "arrendatario":
-                        response.sendRedirect("residente.jsp");
-                        break;
-                    default:
-                        request.setAttribute("error", "Rol desconocido.");
-                        request.getRequestDispatcher("login.jsp").forward(request, response);
-                        break;
-                }
-            } else {
-                request.setAttribute("error", "Tu cuenta está inactiva.");
+            if (rol.equals("inactivo")) {
+                request.setAttribute("error", "Tu cuenta ha sido desactivada.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
+                return;
+            }
+
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("usuario", usu);
+
+            switch (rol) {
+                case "administrador":
+                    response.sendRedirect("admin.jsp");
+                    break;
+                case "guardia":
+                    response.sendRedirect("guardia.jsp");
+                    break;
+                case "arrendatario":
+                case "propietario": // por compatibilidad si llega alguno con ese texto
+                    response.sendRedirect("residente.jsp");
+                    break;
+                default:
+                    request.setAttribute("error", "Rol desconocido.");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    break;
             }
 
         } else {

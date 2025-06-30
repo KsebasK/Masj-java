@@ -69,10 +69,22 @@
         .btn:hover {
             opacity: 0.85;
         }
+
+        .estado-activo {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .estado-inactivo {
+            color: #dc3545;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <%@include file="common/sidebar.jsp" %>
 <%@include file="common/header.jsp" %>
+
 <body>
 <div class="main-content">
     <div class="card shadow mt-4 mx-3">
@@ -108,8 +120,10 @@
                                 <td><%= usu.getNumeroCelular() %></td>
                                 <td><%= usu.getTipoDocumento() + " " + usu.getNumDocumento() %></td>
                                 <td><%= usu.getFechaNacimiento() %></td>
-                                <td><%= usu.getRol() %></td>
-                                <td><%= usu.getEstado() %></td>
+                                <td><%= usu.getRol().toString().toUpperCase() %></td>
+                                <td class="<%= usu.getRol().toString().equalsIgnoreCase("inactivo") ? "estado-inactivo" : "estado-activo" %>">
+                                    <%= usu.getRol().toString().equalsIgnoreCase("inactivo") ? "Inactivo" : "Activo" %>
+                                </td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <form action="SvEditar" method="GET">
@@ -118,7 +132,6 @@
                                         </form>
                                         <form action="SvEliminar" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este usuario?');">
                                             <input type="hidden" name="idUsuario" value="<%= usu.getIdUsuario() %>">
-                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                         </form>
                                     </div>
                                 </td>
@@ -133,6 +146,7 @@
         </div>
     </div>
 </div>
+
 <%@include file="common/footer.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

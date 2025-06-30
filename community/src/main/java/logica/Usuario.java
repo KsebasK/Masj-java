@@ -51,10 +51,6 @@ public class Usuario implements Serializable {
     private Date fechaNacimiento;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Estado", nullable = false)
-    private Estado estado;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "rol", nullable = false)
     private Rol rol;
 
@@ -64,17 +60,16 @@ public class Usuario implements Serializable {
     @Column(name = "NumDocumento", nullable = false)
     private int numDocumento;
 
-    // RELACIÓN CON APARTAMENTO
     @ManyToOne
-    @JoinColumn(name = "idApartamentos") // Esta columna SI necesitas agregarla a la tabla usuario
+    @JoinColumn(name = "idApartamentos")
     private Apartamento apartamentos;
 
     public void setApartamento(Apartamento aptoExistente) {
-     this.apartamentos = aptoExistente;
+        this.apartamentos = aptoExistente;
     }
 
     public enum Rol {
-        arrendatario, guardia, administrador;
+        arrendatario, guardia, administrador, inactivo;
 
         @Override
         public String toString() {
@@ -82,17 +77,11 @@ public class Usuario implements Serializable {
         }
     }
 
-    public enum Estado {
-        activo, inactivo
-    }
-
-    // CONSTRUCTORES
     public Usuario() {}
 
     public Usuario(int idUsuario, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
                    String numeroCelular, String correoElectronico, String contrasena,
-                   Date fechaNacimiento, Estado estado, Rol rol,
-                   String tipoDocumento, int numDocumento, Apartamento apartamentos) {
+                   Date fechaNacimiento, Rol rol, String tipoDocumento, int numDocumento, Apartamento apartamentos) {
         this.idUsuario = idUsuario;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -102,14 +91,14 @@ public class Usuario implements Serializable {
         this.correoElectronico = correoElectronico;
         this.contrasena = contrasena;
         this.fechaNacimiento = fechaNacimiento;
-        this.estado = estado;
         this.rol = rol;
         this.tipoDocumento = tipoDocumento;
         this.numDocumento = numDocumento;
         this.apartamentos = apartamentos;
     }
 
-    // GETTERS Y SETTERS EXISTENTES
+    // Getters y Setters
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -182,14 +171,6 @@ public class Usuario implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
     public Rol getRol() {
         return rol;
     }
@@ -214,7 +195,6 @@ public class Usuario implements Serializable {
         this.numDocumento = numDocumento;
     }
 
-    // GETTER Y SETTER PARA APARTAMENTO
     public Apartamento getApartamento() {
         return apartamentos;
     }
@@ -223,7 +203,7 @@ public class Usuario implements Serializable {
         this.apartamentos = apartamentos;
     }
 
-    // MÉTODOS DE CONVENIENCIA para acceder a los datos del apartamento
+    // Métodos de conveniencia
     public String getTorre() {
         return apartamentos != null ? apartamentos.getTorre() : null;
     }
