@@ -2,6 +2,7 @@ logica\Usuario$Rol.class
 logica\AlquilerZonasComunes.class
 persistencias\QuejaAdminJpaController.class
 Servlets\SvResidente.class
+Servlets\SvResidentesAdmin.class
 logica\Usuario.class
 com\masj\community\resources\JavaEE8Resource.class
 logica\QuejaAdmin.class

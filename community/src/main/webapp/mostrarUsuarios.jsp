@@ -13,73 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="Styles/admin.css">
-    <style>
-        :root {
-            --sunset-yellow: #fecd1a;
-            --sunset-orange: #000000;
-            --sunset-red: #ff4d6d;
-            --sunset-purple: #8338ec;
-            --sunset-dark-purple: #2a004f;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--sunset-dark-purple);
-            font-family: 'Montserrat', sans-serif;
-            color: var(--white);
-        }
-
-        .card {
-            background-color: #3c096c;
-            color: var(--white);
-            border: none;
-        }
-
-        .card-header {
-            background-color: var(--sunset-orange);
-            color: var(--white);
-        }
-
-        .table-custom {
-            background-color: transparent;
-            color: var(--white);
-        }
-
-        .table-custom thead th {
-            background-color: var(--sunset-purple);
-            color: var(--white);
-        }
-
-        .table-custom tbody tr:hover {
-            background-color: rgba(255, 77, 109, 0.2);
-        }
-
-        .btn-warning {
-            background-color: var(--sunset-yellow);
-            color: black;
-            border: none;
-        }
-
-        .btn-danger {
-            background-color: var(--sunset-red);
-            color: white;
-            border: none;
-        }
-
-        .btn:hover {
-            opacity: 0.85;
-        }
-
-        .estado-activo {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .estado-inactivo {
-            color: #dc3545;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <%@include file="common/sidebar.jsp" %>
@@ -89,7 +22,7 @@
 <div class="main-content">
     <div class="card shadow mt-4 mx-3">
         <div class="card-header">
-            <h3 class="mb-0">Usuarios Registrados</h3>
+            <h3 class="mb-0 - texto-blanco" >Usuarios Registrados</h3>
         </div>
         <div class="card-body">
             <% if (listaUsuarios != null && !listaUsuarios.isEmpty()) { %>
@@ -99,7 +32,7 @@
                 </button>
             </form>
             <div class="table-responsive">
-                    <table class="table table-hover table-bordered align-middle table-custom">
+                    <table class="table-custom">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -134,9 +67,6 @@
                                         <form action="SvEditar" method="GET">
                                             <input type="hidden" name="idUsuarioEdit" value="<%= usu.getIdUsuario() %>">
                                             <button type="submit" class="btn btn-sm btn-warning">Editar</button>
-                                        </form>
-                                        <form action="SvEliminar" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este usuario?');">
-                                            <input type="hidden" name="idUsuario" value="<%= usu.getIdUsuario() %>">
                                         </form>
                                     </div>
                                 </td>
