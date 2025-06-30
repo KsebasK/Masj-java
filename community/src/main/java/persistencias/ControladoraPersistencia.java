@@ -1,5 +1,6 @@
 package persistencias;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -201,13 +202,30 @@ public void crearResidente(Residente residente) {
     }
 }
 
-public List<Residente> traerResidentes() {
-    EntityManager em = emf.createEntityManager();
-    try {
-        return em.createQuery("SELECT r FROM Residente r", Residente.class).getResultList();
-    } finally {
-        em.close();
+    public List<Residente> traerResidentes() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT r FROM Residente r", Residente.class).getResultList();
+        } finally {
+            em.close();
+        }
     }
-}
+
+        public List<Residente> traerResidentesConApartamentos() {
+            EntityManager em = emf.createEntityManager();
+            List<Residente> lista = new ArrayList<>();
+            try {
+                lista = em.createQuery("SELECT r FROM Residente r JOIN FETCH r.apartamento JOIN FETCH r.usuario", Residente.class)
+                          .getResultList();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                em.close();
+            }
+            return lista;
+        }
+
+
+
 
 }

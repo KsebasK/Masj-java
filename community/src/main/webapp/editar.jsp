@@ -174,12 +174,12 @@
 
                     <div class="form-group">
                         <label>Torre:</label>
-                        <input type="text" name="torre" value="<%= usuEditar.getApartamento() != null ? usuEditar.getApartamento().getTorre() : "" %>" required>
+                        <input type="text" name="torre" value="<%= usuEditar.getApartamento() != null ? usuEditar.getApartamento().getTorre() : "" %>">
                     </div>
 
                     <div class="form-group">
                         <label>Apartamento:</label>
-                        <input type="text" name="apartamento" value="<%= usuEditar.getApartamento() != null ? usuEditar.getApartamento().getApto() : "" %>" required>
+                        <input type="text" name="apartamento" value="<%= usuEditar.getApartamento() != null ? usuEditar.getApartamento().getApto() : "" %>">
                     </div>
                 </div>
 

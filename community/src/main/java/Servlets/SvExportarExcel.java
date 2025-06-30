@@ -26,7 +26,6 @@ public class SvExportarExcel extends HttpServlet {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Usuarios");
 
-        // Encabezados (sin estado)
         String[] headers = {
             "ID", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
             "Correo", "Celular", "Tipo Documento", "N° Documento",
