@@ -17,10 +17,10 @@ public class AlquilerZonasComunesEntity implements Serializable {
     @Column(name = "FechaAlquiler", nullable = false)
     private Date fechaAlquiler;
 
-    @Column(name = "CantidadPersonas", nullable = false)
+    @Column(name = "CantidadPersonas", nullable = true)
     private Integer cantidadPersonas;
 
-    @Column(name = "TotalPago", nullable = false)
+    @Column(name = "TotalPago", nullable = true)
     private Integer totalPago;
 
     @Column(name = "HoraLimite", nullable = false)

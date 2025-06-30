@@ -5,6 +5,7 @@ logica\AlquilerZonasComunes.class
 logica\Residente_.class
 persistencias\QuejaAdminJpaController.class
 Servlets\SvResidente.class
+Servlets\SvResidentesAdmin.class
 logica\Usuario.class
 com\masj\community\resources\JavaEE8Resource.class
 logica\QuejaAdmin.class
@@ -12,6 +13,7 @@ logica\ZonaComun.class
 persistencias\exceptions\IllegalOrphanException.class
 Servlets\exceptions\PreexistingEntityException.class
 logica\Residente.class
+Servlets\SvExportarExcel.class
 logica\Visitante.class
 persistencias\ControladoraPersistencia.class
 Servlets\SvLogin.class
@@ -37,7 +39,6 @@ logica\Controladora.class
 logica\Usuario_.class
 Servlets\SvEditar.class
 Servlets\SvRegistrarVisitante.class
-logica\Usuario$Estado.class
 logica\Visitante_.class
 Servlets\SvReservarZona.class
 persistencias\ApartamentoJpaController.class

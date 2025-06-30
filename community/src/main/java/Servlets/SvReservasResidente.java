@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logica.AlquilerZonasComunesEntity;
 import logica.AlquilerZonasComunesService;
-
+//ESTE SERVLETS ES PARA LA CONSULTA DE LA RESERVA
 @WebServlet(name = "SvReservasResidente", urlPatterns = {"/SvReservasResidente"})
 public class SvReservasResidente extends HttpServlet {
 

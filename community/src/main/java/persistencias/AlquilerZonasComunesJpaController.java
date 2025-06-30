@@ -7,8 +7,9 @@ import logica.AlquilerZonasComunesEntity;
 
 public class AlquilerZonasComunesJpaController implements Serializable {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("communityPU");
 
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersisteUnitPU");
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
