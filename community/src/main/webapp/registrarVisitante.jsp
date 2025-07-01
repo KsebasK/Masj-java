@@ -72,6 +72,9 @@
     <link rel="stylesheet" href="Styles/admin.css">
     <%@include file="common/sidebarGuardia.jsp" %>
     <%@include file="common/header.jsp" %>
+    
+    <div class="main-content">
+    <div class="content">
 
     <h2>Registrar Nuevo Visitante</h2>
 
@@ -117,5 +120,7 @@
             <button type="submit">Registrar Visitante</button>
         </form>
     </div>
+         </div>
+         </div>
 </body>
 </html>

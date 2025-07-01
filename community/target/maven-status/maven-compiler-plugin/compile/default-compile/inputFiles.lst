@@ -1,10 +1,11 @@
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Actividad.java
-C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\QuejaAdminJpaController.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\UsuarioJpaController.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Residente.java
+C:\xampp\htdocs\Masj-java\community\src\main\java\logica\QuejaResidente.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\SvResidentesAdmin.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\VisitanteJpaController.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\AlquilerZonasComunesService.java
+C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\QuejaResidenteJpaController.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\AlquilerZonasComunes.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencia\exceptions\PreexistingEntityException.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\Servlets\SvReservasResidente.java
@@ -17,7 +18,6 @@ C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\exceptions\Illeg
 C:\xampp\htdocs\Masj-java\community\src\main\java\com\masj\community\JAXRSConfiguration.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\com\masj\community\resources\JavaEE8Resource.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\ResidenteJpaController.java
-C:\xampp\htdocs\Masj-java\community\src\main\java\logica\QuejaAdmin.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\AlquilerZonasComunesEntity.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\persistencias\exceptions\PreexistingEntityException.java
 C:\xampp\htdocs\Masj-java\community\src\main\java\logica\Visitante.java
