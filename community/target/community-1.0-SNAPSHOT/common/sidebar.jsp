@@ -13,8 +13,6 @@
                 <i class="fas fa-home"></i><span>Dashboard</span></a></li>
             <li><a href="estadisticas.jsp" class="<%= currentPage.contains("estadisticas.jsp") ? "active" : "" %>">
                 <i class="fas fa-chart-line"></i><span>Estadísticas</span></a></li>
-            <li><a href="notificaciones.jsp" class="<%= currentPage.contains("notificaciones.jsp") ? "active" : "" %>">
-                <i class="fas fa-bell"></i><span>Notificaciones</span></a></li>
         </ul>
         <h3>Gestión</h3>
         <ul>
