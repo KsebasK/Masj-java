@@ -9,6 +9,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import logica.AlquilerParqueadero;
+import logica.Vehiculo;
+import logica.Parqueadero;
 import logica.Apartamento;
 import logica.Usuario;
 import logica.Visitante;
@@ -24,7 +27,14 @@ public class ControladoraPersistencia {
     // Inyectar emf al JpaController
     UsuarioJpaController usuJpa = new UsuarioJpaController(emf);
     VisitanteJpaController visitanteJpa = new VisitanteJpaController(emf);
-     QuejaResidenteJpaController quejaJpa = new QuejaResidenteJpaController(emf);
+    QuejaResidenteJpaController quejaJpa = new QuejaResidenteJpaController(emf);
+    AlquilerParqueaderoJpaController alquilerJpa = new AlquilerParqueaderoJpaController(emf);
+    VehiculoJpaController vehiculoJpa = new VehiculoJpaController(emf);
+    ResidenteJpaController residenteJpa = new ResidenteJpaController(); 
+
+    
+    
+
     // ================= USUARIO =================
 
     // CREATE
@@ -223,7 +233,59 @@ public void crearResidente(Residente residente) {
             }
             return lista;
         }
+// ================= PARQUEADERO =================
+public List<Parqueadero> traerParqueaderos() {
+    EntityManager em = emf.createEntityManager();
+    try {
+        return em.createQuery("SELECT p FROM Parqueadero p", Parqueadero.class).getResultList();
+    } finally {
+        em.close();
+    }
+}
 
+public Parqueadero traerBahiaDisponible() {
+    EntityManager em = emf.createEntityManager();
+    try {
+        List<Parqueadero> bahias = em.createQuery("SELECT p FROM Parqueadero p WHERE p.estado = 'Desocupado'", Parqueadero.class)
+                                     .setMaxResults(1)
+                                     .getResultList();
+        return bahias.isEmpty() ? null : bahias.get(0);
+    } finally {
+        em.close();
+    }
+}
+
+public void actualizarParqueadero(Parqueadero p) {
+    EntityManager em = emf.createEntityManager();
+    try {
+        em.getTransaction().begin();
+        em.merge(p);
+        em.getTransaction().commit();
+    } catch (Exception e) {
+        if (em.getTransaction().isActive()) em.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        em.close();
+    }
+}
+
+
+public void registrarVehiculo(Vehiculo vehiculo) {
+    vehiculoJpa.create(vehiculo);
+}
+
+public List<Vehiculo> traerVehiculos() {
+    return vehiculoJpa.findVehiculoEntities();
+}
+public Residente traerResidente(int id) {
+    return residenteJpa.findResidente(id);
+}
+public void registrarAlquilerParqueadero(AlquilerParqueadero alquiler) {
+    alquilerJpa.create(alquiler);
+}
+public Residente buscarResidente(int id) {
+    return residenteJpa.findResidente(id);
+}
 
 
 

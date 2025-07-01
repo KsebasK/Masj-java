@@ -8,6 +8,7 @@ import logica.Residente;
 import persistencias.VisitanteJpaController;
 import logica.Visitante;
 
+
 public class ResidenteJpaController implements Serializable {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersisteUnitPU");

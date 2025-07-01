@@ -124,5 +124,37 @@ public class Controladora {
     }
 
 
+ // ================= PARQUEADERO =================
+    public Parqueadero obtenerBahiaDisponible() {
+        return controlPersis.traerBahiaDisponible();
+    }
+
+    public void actualizarParqueadero(Parqueadero p) {
+        controlPersis.actualizarParqueadero(p);
+    }
+
+    // ================= VEHICULO =================
+    public void registrarVehiculo(Vehiculo vehiculo) {
+        controlPersis.registrarVehiculo(vehiculo);
+    }
+
+    public List<Vehiculo> traerVehiculos() {
+        return controlPersis.traerVehiculos();
+    }
+
+    // ================= RESIDENTE =================
+    public Residente traerResidente(int id) {
+        return controlPersis.traerResidente(id);
+    }
+public Residente buscarResidente(int id) {
+    return controlPersis.buscarResidente(id);
+    
+}
+
+    public void registrarAlquilerParqueadero(AlquilerParqueadero alquiler) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
 }
 
