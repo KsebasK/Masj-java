@@ -24,13 +24,16 @@
         <div class="card-header">
             <h3 class="mb-0 - texto-blanco" >Usuarios Registrados</h3>
         </div>
-        <div class="card-body">
-            <% if (listaUsuarios != null && !listaUsuarios.isEmpty()) { %>
-             <form action="SvExportarExcel" method="GET">
+                <div class="card-body">
+                 <% if (listaUsuarios != null && !listaUsuarios.isEmpty()) { %>
+                 <div style="text-align: left;">
+            <form action="SvExportarExcel" method="GET" style="display: inline-block;">
                 <button type="submit" class="btn btn-success mb-3">
-                    <i class="fas fa-file-excel"></i> Exportar a Excel
+                  <i class="fas fa-file-excel"></i> Exportar a Excel
                 </button>
             </form>
+        </div>
+
             <div class="table-responsive">
                     <table class="table-custom">
                         <thead>
