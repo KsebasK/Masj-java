@@ -2,6 +2,7 @@ package Servlets;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import logica.AlquilerZonasComunesService;
 
-// ESTE SERVLET ES PARA SOLICITAR UNA RESERVA O HACERLA
 @WebServlet("/SvReservarZona")
 public class SvReservarZona extends HttpServlet {
 
@@ -20,22 +20,33 @@ public class SvReservarZona extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            // Leer y validar todos los parámetros esperados
             int idResidente = Integer.parseInt(req.getParameter("idResidente"));
             int idZona = Integer.parseInt(req.getParameter("idZonaComun"));
             int personas = Integer.parseInt(req.getParameter("cantidadPersonas"));
-            java.util.Date fecha;
+            double totalPago = Double.parseDouble(req.getParameter("totalPago"));
+            String hora = req.getParameter("hora");
+
+            // Validar campos de fecha
+            Date fecha;
             try {
                 fecha = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha"));
             } catch (Exception e) {
-                fecha = new java.util.Date();
+                throw new IllegalArgumentException("Fecha inválida");
             }
-            String hora = req.getParameter("hora");
 
-            // Enviar reserva sin campo totalPago
-            service.crearReserva(idResidente, idZona, fecha, hora, personas);
+            if (hora == null || hora.trim().isEmpty()) {
+                throw new IllegalArgumentException("Hora inválida");
+            }
 
+            // Llamar al servicio
+            service.crearReserva(idResidente, idZona, fecha, hora, personas, totalPago);
+
+            // Redirigir al servlet que lista reservas
             resp.sendRedirect("SvReservasResidente?idResidente=" + idResidente);
-        } catch (NumberFormatException e) {
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Para depurar en consola
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Datos inválidos o incompletos en el formulario");
         }
     }
