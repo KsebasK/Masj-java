@@ -12,6 +12,7 @@
 <div class="main-content">
     <div class="content">
         <h2>Reservas de Zonas Comunes</h2>
+
         <%
             List<AlquilerZonasComunesEntity> reservas = (List<AlquilerZonasComunesEntity>) request.getAttribute("reservas");
             if (reservas == null || reservas.isEmpty()) {
@@ -47,30 +48,43 @@
         <% } %>
 
         <h2>Hacer una nueva reserva</h2>
-        <form action="SvReservarZona" method="post">
-            <input type="hidden" name="idResidente" value="<%= session.getAttribute("idResidente") %>">
-            <label>Zona Común:</label>
-            <select name="idZonaComun" required>
-                <option value="1">Salón Comunal</option>
-                <option value="2">Piscina</option>
-                <option value="3">BBQ</option>
-            </select><br><br>
 
-            <label>Fecha:</label>
-            <input type="date" name="fecha" required><br><br>
+        <%
+            logica.Usuario usuario = (logica.Usuario) session.getAttribute("usuario");
+            if (usuario== null) {
+        %>
+            <p style="color:red;">ERROR: No se ha iniciado sesión como arrendatario.</p>
+        <%
+            } else {
+        %>
+            <form action="SvReservarZona" method="post">
+                <!-- Suponiendo que arrendatario es solo el ID en la sesión -->
+                <input type="hidden" name="idResidente" value="<%= usuario %>">
 
-            <label>Hora:</label>
-            <input type="time" name="hora" required><br><br>
+                <label>Zona Común:</label>
+                <select name="idZonaComun" required>
+                    <option value="1">Salón Comunal</option>
+                    <option value="2">Piscina</option>
+                    <option value="3">BBQ</option>
+                </select><br><br>
 
-            <label>Cantidad de Personas:</label>
-            <input type="number" name="cantidadPersonas" min="1" required><br><br>
+                <label>Fecha:</label>
+                <input type="date" name="fecha" required><br><br>
 
-            <label>Total Pago:</label>
-            <input type="number" name="totalPago" min="0" required><br><br>
-            
+                <label>Hora:</label>
+                <input type="time" name="hora" required><br><br>
 
-            <button type="submit" class="btn btn-primary">Reservar</button>
-        </form>
+                <label>Cantidad de Personas:</label>
+                <input type="number" name="cantidadPersonas" min="1" required><br><br>
+
+                <label>Total Pago:</label>
+                <input type="number" name="totalPago" min="0" required><br><br>
+
+                <button type="submit" class="btn btn-primary">Reservar</button>
+            </form>
+        <%
+            }
+        %>
     </div>
 </div>
 </body>
