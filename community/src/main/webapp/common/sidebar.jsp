@@ -29,7 +29,7 @@
                 <i class="fas fa-swimming-pool"></i><span>Zonas Comunes</span></a></li>
             <li><a href="paqueteria.jsp" class="<%= currentPage.contains("paqueteria.jsp") ? "active" : "" %>">
                 <i class="fas fa-box"></i><span>Paquetería</span></a></li>
-            <li><a href="quejas.jsp" class="<%= currentPage.contains("quejas.jsp") ? "active" : "" %>">
+            <li><a href="<%=request.getContextPath()%>/SvQuejasAdmin" class="<%= currentPage.contains("SvQuejasAdmin") ? "active" : "" %>">
                 <i class="fas fa-comment-alt"></i><span>Quejas</span></a></li>
         </ul>
                   
