@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "quejas")
-public class QuejaAdmin implements Serializable {
+public class QuejaResidente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,10 @@ public class QuejaAdmin implements Serializable {
     @JoinColumn(name = "idAdministrador")
     private Usuario administrador;
 
-    public QuejaAdmin() {
+    public QuejaResidente() {
     }
 
-    public QuejaAdmin(Date fechaQueja, String motivoQueja, String estadoQueja, Residente residente, Usuario administrador) {
+    public QuejaResidente(Date fechaQueja, String motivoQueja, String estadoQueja, Residente residente, Usuario administrador) {
         this.fechaQueja = fechaQueja;
         this.motivoQueja = motivoQueja;
         this.estadoQueja = estadoQueja;

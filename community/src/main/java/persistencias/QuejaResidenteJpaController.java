@@ -4,13 +4,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import logica.QuejaAdmin;
+import logica.QuejaResidente;
 
-public class QuejaAdminJpaController {
+public class QuejaResidenteJpaController {
 
     private final EntityManagerFactory emf;
 
-    public QuejaAdminJpaController(EntityManagerFactory emf) {
+    public QuejaResidenteJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
@@ -19,7 +19,7 @@ public class QuejaAdminJpaController {
     }
 
     // Crear queja
-    public void create(QuejaAdmin queja) {
+    public void create(QuejaResidente queja) {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
@@ -31,7 +31,7 @@ public class QuejaAdminJpaController {
     }
 
     // Editar queja
-    public void edit(QuejaAdmin queja) {
+    public void edit(QuejaResidente queja) {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
@@ -47,7 +47,7 @@ public class QuejaAdminJpaController {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
-            QuejaAdmin queja = em.find(QuejaAdmin.class, id);
+            QuejaResidente queja = em.find(QuejaResidente.class, id);
             if (queja != null) {
                 em.remove(queja);
             }
@@ -58,20 +58,20 @@ public class QuejaAdminJpaController {
     }
 
     // Buscar una queja por ID
-    public QuejaAdmin findQuejaAdmin(int id) {
+    public QuejaResidente findQuejaAdmin(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(QuejaAdmin.class, id);
+            return em.find(QuejaResidente.class, id);
         } finally {
             em.close();
         }
     }
 
     // Traer todas las quejas
-    public List<QuejaAdmin> findQuejaAdminEntities() {
+    public List<QuejaResidente> findQuejaAdminEntities() {
         EntityManager em = getEntityManager();
         try {
-            TypedQuery<QuejaAdmin> query = em.createQuery("SELECT q FROM QuejaAdmin q", QuejaAdmin.class);
+            TypedQuery<QuejaResidente> query = em.createQuery("SELECT q FROM QuejaAdmin q", QuejaResidente.class);
             return query.getResultList();
         } finally {
             em.close();
