@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-06-2025 a las 21:49:00
+-- Tiempo de generación: 01-07-2025 a las 02:16:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -71,8 +71,11 @@ CREATE TABLE `apartamentos` (
 
 INSERT INTO `apartamentos` (`idApartamentos`, `torre`, `apto`) VALUES
 (1, '1', '204'),
-(2, '5', '101'),
-(3, '8', '205');
+(2, '2', '222'),
+(3, '1', '222'),
+(4, '2', '221'),
+(5, '', ''),
+(6, '7', '104');
 
 -- --------------------------------------------------------
 
@@ -119,7 +122,10 @@ CREATE TABLE `residentes` (
 --
 
 INSERT INTO `residentes` (`idResidente`, `idApartamento`) VALUES
-(6, 3);
+(7, 2),
+(8, 3),
+(9, 4),
+(10, 6);
 
 -- --------------------------------------------------------
 
@@ -137,8 +143,7 @@ CREATE TABLE `usuario` (
   `CorreoElectronico` varchar(40) NOT NULL,
   `Contrasena` varchar(64) NOT NULL,
   `FechaNacimiento` date NOT NULL,
-  `Estado` enum('activo','inactivo') NOT NULL,
-  `Rol` enum('propietario','arrendatario','guardia','administrador') NOT NULL,
+  `rol` enum('arrendatario','guardia','administrador','inactivo') DEFAULT NULL,
   `TipoDocumento` varchar(10) NOT NULL,
   `NumDocumento` int(11) NOT NULL,
   `idApartamentos` int(11) DEFAULT NULL
@@ -148,12 +153,15 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `NumeroCelular`, `CorreoElectronico`, `Contrasena`, `FechaNacimiento`, `Estado`, `Rol`, `TipoDocumento`, `NumDocumento`, `idApartamentos`) VALUES
-(1, 'sebastianB', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2006-07-28', 'activo', 'administrador', 'CC', 1234567089, 1),
-(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'activo', 'arrendatario', 'cedula', 1234567089, 3),
-(4, 'karen', '', 'guzman', 'soto', '3208444442', 'karen@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'activo', 'administrador', 'cedula', 1234567089, 1),
-(5, 'Andres', 'sapa', 'rana', 'su hermana', '3115741974', 'andres@gmail.com', '482970ad546fba00d2aabc3a00b5767e2ff3205d543c30cf372fb5bc45e5b798', '2004-10-12', 'activo', 'guardia', 'cedula', 1021393718, 2),
-(6, 'Andres', 'su mama', 'ess', 'puta', '3115741974', 'andres2@gmail.com', '08a3f97b0260bbb64451d97519a2adc9224a3c7966fe7b0d55f3be9f4a0287f9', '2004-10-12', 'activo', 'arrendatario', 'cedula', 1021393718, 3);
+INSERT INTO `usuario` (`idUsuario`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `NumeroCelular`, `CorreoElectronico`, `Contrasena`, `FechaNacimiento`, `rol`, `TipoDocumento`, `NumDocumento`, `idApartamentos`) VALUES
+(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', '123456', '2006-07-28', 'administrador', 'cedula', 1234567089, NULL),
+(4, 'karen', '', 'guzman', 'soto', '3208444442', 'karen@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'administrador', 'CC', 1234567089, 1),
+(5, 'karen', '', 'guzman', 'sotico', '3208454442', 'sebasasda@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'inactivo', 'CC', 1023456789, 1),
+(6, 'prueba', 'sebastian', 'guzman', 'holguin', '3208444262', 'sebas1@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'administrador', 'CC', 1234567894, 5),
+(7, 'prueba', 'sebastian', 'guzman', 'sotico', '3208444454', 'sebas12@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'arrendatario', 'cedula', 1234567894, 2),
+(8, 'andresB', 'sebastian', 'guzman', 'sotico', '3208444454', 'sebasasda@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2000-07-28', 'guardia', 'cedula', 1234567894, 3),
+(9, 'tatiana', 'sebastian', 'guzman', 'sotico', '3208444454', 'karen2@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'arrendatario', 'cedula', 1023456789, 4),
+(10, 'midry', '', 'gordo', '', '3121212121', 'gordo@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2000-06-06', 'arrendatario', 'cedula', 987543210, 6);
 
 -- --------------------------------------------------------
 
@@ -191,13 +199,6 @@ CREATE TABLE `visitante` (
   `hora_entrada` time DEFAULT NULL,
   `hora_salida` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `visitante`
---
-
-INSERT INTO `visitante` (`idVisitante`, `NombresVisitante`, `ApellidosVisitante`, `TipoDocumento`, `NumDocumento`, `idGuardia`, `idApartamento`, `hora_entrada`, `hora_salida`) VALUES
-(4, 'andres', 'martinez', 'CC', 1021393718, 5, 2, '19:37:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -308,7 +309,7 @@ ALTER TABLE `alquilerzonascomunes`
 -- AUTO_INCREMENT de la tabla `apartamentos`
 --
 ALTER TABLE `apartamentos`
-  MODIFY `idApartamentos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idApartamentos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `parqueadero`
@@ -320,13 +321,13 @@ ALTER TABLE `parqueadero`
 -- AUTO_INCREMENT de la tabla `quejas`
 --
 ALTER TABLE `quejas`
-  MODIFY `idQueja` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idQueja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
@@ -338,7 +339,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `visitante`
 --
 ALTER TABLE `visitante`
-  MODIFY `idVisitante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idVisitante` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `zonacomun`
