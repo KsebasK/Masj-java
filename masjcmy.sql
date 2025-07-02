@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2025 a las 02:16:26
+-- Tiempo de generación: 02-07-2025 a las 01:44:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -91,6 +91,17 @@ CREATE TABLE `parqueadero` (
   `Estado` enum('Ocupado','Desocupado') NOT NULL DEFAULT 'Desocupado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `parqueadero`
+--
+
+INSERT INTO `parqueadero` (`idBahia`, `FechaEntrada`, `FechaSalida`, `Novedad`, `Estado`) VALUES
+(1, NULL, NULL, 'Ninguna', 'Desocupado'),
+(2, NULL, NULL, 'Ninguna', 'Desocupado'),
+(3, NULL, NULL, 'Ninguna', 'Desocupado'),
+(4, NULL, NULL, 'Ninguna', 'Desocupado'),
+(5, NULL, NULL, 'Ninguna', 'Desocupado');
+
 -- --------------------------------------------------------
 
 --
@@ -102,9 +113,17 @@ CREATE TABLE `quejas` (
   `FechaQueja` date NOT NULL,
   `MotivoQueja` text NOT NULL,
   `idResidente` int(11) NOT NULL,
-  `EstadoQueja` tinyint(4) NOT NULL,
+  `estadoQueja` varchar(20) DEFAULT NULL,
   `idAdministrador` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `quejas`
+--
+
+INSERT INTO `quejas` (`idQueja`, `FechaQueja`, `MotivoQueja`, `idResidente`, `estadoQueja`, `idAdministrador`) VALUES
+(2, '2025-07-01', 'Ruido excesivo en el piso 3 durante la noche', 7, 'PENDIENTE', 4),
+(3, '2025-07-01', 'Fuga de agua en el ba?o del apartamento 201', 7, 'PENDIENTE', 4);
 
 -- --------------------------------------------------------
 
@@ -154,7 +173,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `NumeroCelular`, `CorreoElectronico`, `Contrasena`, `FechaNacimiento`, `rol`, `TipoDocumento`, `NumDocumento`, `idApartamentos`) VALUES
-(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', '123456', '2006-07-28', 'administrador', 'cedula', 1234567089, NULL),
+(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', '8d969eef6ecad3c29a3a629280e686cff8ca7f6c2f6d2f7f9d5f3c1a2d4c6f8d', '2006-07-28', 'administrador', 'cedula', 1234567089, NULL),
 (4, 'karen', '', 'guzman', 'soto', '3208444442', 'karen@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'administrador', 'CC', 1234567089, 1),
 (5, 'karen', '', 'guzman', 'sotico', '3208454442', 'sebasasda@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'inactivo', 'CC', 1023456789, 1),
 (6, 'prueba', 'sebastian', 'guzman', 'holguin', '3208444262', 'sebas1@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'administrador', 'CC', 1234567894, 5),
@@ -162,6 +181,25 @@ INSERT INTO `usuario` (`idUsuario`, `PrimerNombre`, `SegundoNombre`, `PrimerApel
 (8, 'andresB', 'sebastian', 'guzman', 'sotico', '3208444454', 'sebasasda@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2000-07-28', 'guardia', 'cedula', 1234567894, 3),
 (9, 'tatiana', 'sebastian', 'guzman', 'sotico', '3208444454', 'karen2@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'arrendatario', 'cedula', 1023456789, 4),
 (10, 'midry', '', 'gordo', '', '3121212121', 'gordo@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2000-06-06', 'arrendatario', 'cedula', 987543210, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehiculo`
+--
+
+CREATE TABLE `vehiculo` (
+  `IDVEHICULO` int(11) NOT NULL,
+  `HORA_INGRESO` datetime DEFAULT NULL,
+  `HORA_SALIDA` datetime DEFAULT NULL,
+  `MARCAVEHICULO` varchar(255) DEFAULT NULL,
+  `MODELOVEHICULO` varchar(255) DEFAULT NULL,
+  `PLACAVEHICULO` varchar(255) DEFAULT NULL,
+  `VALOR_PAGADO` int(11) DEFAULT NULL,
+  `idBahia` int(11) DEFAULT NULL,
+  `idResidente` int(11) DEFAULT NULL,
+  `idVisitante` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -267,6 +305,15 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
+-- Indices de la tabla `vehiculo`
+--
+ALTER TABLE `vehiculo`
+  ADD PRIMARY KEY (`IDVEHICULO`),
+  ADD KEY `FK_VEHICULO_idVisitante` (`idVisitante`),
+  ADD KEY `FK_VEHICULO_idBahia` (`idBahia`),
+  ADD KEY `FK_VEHICULO_idResidente` (`idResidente`);
+
+--
 -- Indices de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
@@ -315,19 +362,25 @@ ALTER TABLE `apartamentos`
 -- AUTO_INCREMENT de la tabla `parqueadero`
 --
 ALTER TABLE `parqueadero`
-  MODIFY `idBahia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBahia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
 --
 ALTER TABLE `quejas`
-  MODIFY `idQueja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idQueja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `vehiculo`
+--
+ALTER TABLE `vehiculo`
+  MODIFY `IDVEHICULO` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
@@ -379,6 +432,14 @@ ALTER TABLE `quejas`
 ALTER TABLE `residentes`
   ADD CONSTRAINT `residentes_ibfk_1` FOREIGN KEY (`idResidente`) REFERENCES `usuario` (`idUsuario`),
   ADD CONSTRAINT `residentes_ibfk_2` FOREIGN KEY (`idApartamento`) REFERENCES `apartamentos` (`idApartamentos`);
+
+--
+-- Filtros para la tabla `vehiculo`
+--
+ALTER TABLE `vehiculo`
+  ADD CONSTRAINT `FK_VEHICULO_idBahia` FOREIGN KEY (`idBahia`) REFERENCES `parqueadero` (`idBahia`),
+  ADD CONSTRAINT `FK_VEHICULO_idResidente` FOREIGN KEY (`idResidente`) REFERENCES `residentes` (`idResidente`),
+  ADD CONSTRAINT `FK_VEHICULO_idVisitante` FOREIGN KEY (`idVisitante`) REFERENCES `visitante` (`idVisitante`);
 
 --
 -- Filtros para la tabla `vehiculos`
