@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-07-2025 a las 01:44:49
+-- Tiempo de generación: 02-07-2025 a las 06:31:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -75,7 +75,12 @@ INSERT INTO `apartamentos` (`idApartamentos`, `torre`, `apto`) VALUES
 (3, '1', '222'),
 (4, '2', '221'),
 (5, '', ''),
-(6, '7', '104');
+(6, '7', '104'),
+(7, '1', '205'),
+(8, '', '1212'),
+(9, '2', '200'),
+(10, '7', '204'),
+(11, '1', '1204');
 
 -- --------------------------------------------------------
 
@@ -123,7 +128,8 @@ CREATE TABLE `quejas` (
 
 INSERT INTO `quejas` (`idQueja`, `FechaQueja`, `MotivoQueja`, `idResidente`, `estadoQueja`, `idAdministrador`) VALUES
 (2, '2025-07-01', 'Ruido excesivo en el piso 3 durante la noche', 7, 'PENDIENTE', 4),
-(3, '2025-07-01', 'Fuga de agua en el ba?o del apartamento 201', 7, 'PENDIENTE', 4);
+(3, '2025-07-01', 'Fuga de agua en el ba?o del apartamento 201', 7, 'PENDIENTE', 4),
+(5, '2025-07-01', 'Fugas de agua en el parqueadero subterr?neo', 7, 'SIN SOLUCI?N', 3);
 
 -- --------------------------------------------------------
 
@@ -141,10 +147,16 @@ CREATE TABLE `residentes` (
 --
 
 INSERT INTO `residentes` (`idResidente`, `idApartamento`) VALUES
+(15, 1),
 (7, 2),
 (8, 3),
 (9, 4),
-(10, 6);
+(10, 6),
+(11, 7),
+(12, 8),
+(13, 9),
+(14, 10),
+(16, 11);
 
 -- --------------------------------------------------------
 
@@ -173,14 +185,20 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `NumeroCelular`, `CorreoElectronico`, `Contrasena`, `FechaNacimiento`, `rol`, `TipoDocumento`, `NumDocumento`, `idApartamentos`) VALUES
-(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', '8d969eef6ecad3c29a3a629280e686cff8ca7f6c2f6d2f7f9d5f3c1a2d4c6f8d', '2006-07-28', 'administrador', 'cedula', 1234567089, NULL),
+(3, 'andres', '', 'BernalH', '', '3208444444', 'sebas@gmail.com', '8d969eef6ecad3c29a3a629280e686cff8ca7f6c2f6d2f7f9d5f3c1a2d4c6f8d', '2006-07-28', 'guardia', 'CC', 1234567089, 5),
 (4, 'karen', '', 'guzman', 'soto', '3208444442', 'karen@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'administrador', 'CC', 1234567089, 1),
 (5, 'karen', '', 'guzman', 'sotico', '3208454442', 'sebasasda@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'inactivo', 'CC', 1023456789, 1),
 (6, 'prueba', 'sebastian', 'guzman', 'holguin', '3208444262', 'sebas1@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'administrador', 'CC', 1234567894, 5),
 (7, 'prueba', 'sebastian', 'guzman', 'sotico', '3208444454', 'sebas12@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'arrendatario', 'cedula', 1234567894, 2),
 (8, 'andresB', 'sebastian', 'guzman', 'sotico', '3208444454', 'sebasasda@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2000-07-28', 'guardia', 'cedula', 1234567894, 3),
 (9, 'tatiana', 'sebastian', 'guzman', 'sotico', '3208444454', 'karen2@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2006-07-28', 'arrendatario', 'cedula', 1023456789, 4),
-(10, 'midry', '', 'gordo', '', '3121212121', 'gordo@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2000-06-06', 'arrendatario', 'cedula', 987543210, 6);
+(10, 'midry', '', 'gordo', '', '3121212121', 'gordo@gmail.com', 'e63c0ce90c0c1edf0bfc88aae8ed3193add40981837ef5872bac207cfaa0295a', '2000-06-06', 'arrendatario', 'cedula', 987543210, 6),
+(11, 'sebas', 'Bernal', 'bernal', '', '3121212320', '1sebas@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2006-07-28', 'administrador', 'cedula', 1234567089, 7),
+(12, 'prueba', '', 'guzman', 'holguin', '3208444442', '1sebas1@gmail.com', '79c179de51410f6a3c2691a3523df745cda9b75d0797c92c4536be513f745006', '2006-07-28', 'arrendatario', 'cedula', 1234567089, 8),
+(13, 'prueba', 'Bernal', 'guzman', 'sotico', '3121212121', 'karen12@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '2006-07-28', 'arrendatario', 'cedula', 987543210, 9),
+(14, 'sebastianB', 'sebastian', 'guzman', 'sotico', '3121212121', 'sebasasda@gmail.com', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', '2006-01-28', 'arrendatario', 'cedula', 1234567894, 10),
+(15, 'karen', 'sebastian', 'bernal', 'holguin', '3121212121', 'pruebac@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '2006-07-28', 'arrendatario', 'cedula', 1234567899, 1),
+(16, 'sebastianB', 'sebastian', 'BernalH', 'sotico', '3208444454', 'sebas111@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '2006-07-28', 'arrendatario', 'cedula', 1234567894, 11);
 
 -- --------------------------------------------------------
 
@@ -237,6 +255,14 @@ CREATE TABLE `visitante` (
   `hora_entrada` time DEFAULT NULL,
   `hora_salida` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `visitante`
+--
+
+INSERT INTO `visitante` (`idVisitante`, `NombresVisitante`, `ApellidosVisitante`, `TipoDocumento`, `NumDocumento`, `idGuardia`, `idApartamento`, `hora_entrada`, `hora_salida`) VALUES
+(1, 'sebastian', 'bernal holguin', 'CC', 1234567890, 8, 1, '23:48:35', NULL),
+(2, 'sebastian', 'bernal holguin', 'CC', 123456789, 8, 1, '04:12:42', NULL);
 
 -- --------------------------------------------------------
 
@@ -356,7 +382,7 @@ ALTER TABLE `alquilerzonascomunes`
 -- AUTO_INCREMENT de la tabla `apartamentos`
 --
 ALTER TABLE `apartamentos`
-  MODIFY `idApartamentos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idApartamentos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `parqueadero`
@@ -368,13 +394,13 @@ ALTER TABLE `parqueadero`
 -- AUTO_INCREMENT de la tabla `quejas`
 --
 ALTER TABLE `quejas`
-  MODIFY `idQueja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idQueja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculo`
@@ -392,7 +418,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `visitante`
 --
 ALTER TABLE `visitante`
-  MODIFY `idVisitante` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idVisitante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `zonacomun`
