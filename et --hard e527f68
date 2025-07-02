@@ -1,0 +1,110 @@
+* [33m46d6bc6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m updateBDBahia
+* [33m2e1b7e1[m updateSliderAdmin3
+* [33mbc889d0[m updateQuejasAdmin
+* [33m6264e76[m update
+* [33me8c29b0[m funciones completadas del guardia
+* [33m46ba911[m updateSliderAdmin
+* [33m980e948[m UpdateQuejasAdmin a QuejasResidente
+* [33m31a9247[m UpdateEstadisticas
+* [33me527f68[m updateBD
+* [33m5ad5a27[m update css y funcionalidad de  alquiler de zonas comunes
+*   [33m37c5722[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[32m|[m[33m\[m  
+[32m|[m * [33m93722f3[m updateApartamentos Y Css
+[32m|[m * [33m5b58502[m updateEditar2
+[32m|[m * [33m80711e3[m DesactivarUsuario
+[32m|[m * [33m447cfc0[m DelateEstado
+[32m|[m * [33m2c89545[m redireccion
+* [33m|[m [33ma749fe0[m funcionalidad zonas comunes
+[33m|[m[33m/[m  
+*   [33mb17d12e[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[34m|[m[35m\[m  
+[34m|[m *   [33m215c3db[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[34m|[m [36m|[m[1;31m\[m  
+[34m|[m * [1;31m|[m [33m283f03d[m Update masjcmy.sql
+[34m|[m * [1;31m|[m [33mdb5aa77[m validacion de registro visitante
+* [1;31m|[m [1;31m|[m [33mc074e68[m DASHBOARD-RESIDENTE
+[1;31m|[m [1;31m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;31m|[m   
+* [1;31m|[m [33m29e9d3e[m ci
+[1;31m|[m[1;31m/[m  
+* [33m5456560[m update adminQuejasyInserccion en base de datos residentes
+* [33mdff2d78[m updateGraficasAdmin
+* [33m5760b95[m .
+*   [33m4dec61f[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [33m3d534c0[m solucionLogin
+* [1;33m|[m [33m7eee890[m guardia agregado
+[1;33m|[m[1;33m/[m  
+* [33m18619da[m updateDatabase
+* [33mac4c49a[m updateAdmin4
+* [33md1f7fb4[m ci
+*   [33m34168f2[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [33m5024846[m updateMasjcmy
+* [1;35m|[m [33m33e2310[m ci
+[1;35m|[m[1;35m/[m  
+*   [33m0cdcf12[m ci
+[1;36m|[m[31m\[m  
+[1;36m|[m *   [33mc5ee04c[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[1;36m|[m [32m|[m[33m\[m  
+[1;36m|[m * [33m|[m [33m1ef19c6[m updateAdmin3
+[1;36m|[m * [33m|[m [33mf421f62[m updateAdministrador2
+[1;36m|[m * [33m|[m [33m744508b[m updateAdmin
+[1;36m|[m * [33m|[m [33m15ce458[m update
+[1;36m|[m * [33m|[m [33ma499202[m update SvUsu
+* [33m|[m [33m|[m [33mfdc3e53[m ci
+[33m|[m [33m|[m[33m/[m  
+[33m|[m[33m/[m[33m|[m   
+* [33m|[m [33m906d939[m update
+* [33m|[m [33m45ae17f[m update
+* [33m|[m [33ma82c7e0[m aja
+[33m|[m[33m/[m  
+*   [33mf37979d[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[34m|[m[35m\[m  
+[34m|[m * [33ma92027d[m chi
+[34m|[m *   [33mccd2f0c[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[34m|[m [36m|[m[1;31m\[m  
+[34m|[m [36m|[m *   [33m098bebd[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[34m|[m [36m|[m [1;32m|[m[1;33m\[m  
+[34m|[m [36m|[m * [1;33m|[m [33mf7ba806[m ok
+[34m|[m * [1;33m|[m [1;33m|[m [33m03b2ba9[m ok
+* [1;33m|[m [1;33m|[m [1;33m|[m [33m336364f[m 1
+[1;33m|[m [1;33m|[m[1;33m_[m[1;33m|[m[1;33m/[m  
+[1;33m|[m[1;33m/[m[1;33m|[m [1;33m|[m   
+* [1;33m|[m [1;33m|[m   [33mc010689[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[1;34m|[m[1;35m\[m [1;33m\[m [1;33m\[m  
+[1;34m|[m * [1;33m|[m [1;33m|[m [33m874e0be[m Update masjcmy.txt
+[1;34m|[m [1;33m|[m [1;33m|[m[1;33m/[m  
+[1;34m|[m [1;33m|[m[1;33m/[m[1;33m|[m   
+[1;34m|[m * [1;33m|[m [33m2d0d531[m Update masjcmy.txt
+[1;34m|[m [1;33m|[m[1;33m/[m  
+* [1;33m|[m [33m7bc7763[m update
+* [1;33m|[m [33mf471b67[m update
+[1;33m|[m[1;33m/[m  
+* [33ma1b4214[m mejora de login y registro
+* [33mfc7550d[m 1
+* [33m89c4da8[m Update nb-configuration.xml
+* [33m991e7e8[m update BD
+*   [33m648d47d[m nuevaBD
+[1;36m|[m[31m\[m  
+[1;36m|[m * [33m053ea15[m update
+[1;36m|[m * [33m297cecb[m update
+[1;36m|[m * [33mf7099dd[m update
+[1;36m|[m * [33mfa0ca9a[m chi
+[1;36m|[m *   [33ma62b81a[m Merge branch 'main' of https://github.com/KsebasK/Masj-java
+[1;36m|[m [32m|[m[33m\[m  
+[1;36m|[m [32m|[m * [33m610d90e[m chi
+[1;36m|[m * [33m|[m [33m7dcc988[m admin
+[1;36m|[m * [33m|[m [33mef0514f[m admin.jsp
+[1;36m|[m [33m|[m[33m/[m  
+* [33m/[m [33mc9d7911[m nuevaBD
+[33m|[m[33m/[m  
+* [33m63d3d6a[m database
+* [33mf768128[m validacion correcta de cada rol
+* [33m4b593d0[m validacion arrendatario
+* [33mfc2cf96[m validacion guardia
+* [33mdddec4a[m validacion residente
+* [33mb46a1ed[m login y admin validacion
+* [33m14a4cec[m update
+* [33mbc92ff7[m MASJ-JAVA
