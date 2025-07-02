@@ -1,4 +1,4 @@
-<%@page import="logica.Actividad"%>
+z<%@page import="logica.Actividad"%>
 <%@page import="java.util.List"%>
 <%@page import="logica.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

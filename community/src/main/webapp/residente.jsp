@@ -8,7 +8,7 @@
             <input type="text" placeholder="Buscar...">
         </div>
         <div class="user-profile">
-            <img src="imagenes/user.png" alt="Usuario">
+            <img src="imagenes/usuario.png" alt="Usuario">
             <div class="user-info">
                 <h4>Residente</h4>
                 <small>Apartamento 101</small>

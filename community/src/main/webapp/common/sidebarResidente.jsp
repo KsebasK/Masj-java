@@ -3,7 +3,7 @@
 %>
 <div class="sidebar">
     <div class="sidebar-header">
-        <img src="${pageContext.request.contextPath}/imagenes/logo-masj.png" alt="Logo">
+       <img src="${pageContext.request.contextPath}/imagenes/MASJ.png" alt="Logo MASJ">
         <h3>MASJ Residente</h3>
     </div>
     <div class="sidebar-menu">
