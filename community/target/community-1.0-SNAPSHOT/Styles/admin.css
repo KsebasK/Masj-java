@@ -856,3 +856,9 @@ form {
     width: 100%;
     max-width: 500px; /* Ancho controlado */
 }
+
+.password-match {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: center;
+}
