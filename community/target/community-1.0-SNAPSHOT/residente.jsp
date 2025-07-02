@@ -1,6 +1,17 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page import="logica.Usuario" %>
+<%
+    Usuario u = (Usuario) session.getAttribute("usuario");
+    if (u == null) {
+        response.sendRedirect("login.jsp?error=session_expired");
+        return;
+    }
+%>
+
 <%@ include file="common/header.jsp" %>
 <%@ include file="common/sidebarResidente.jsp" %>
- <link rel="stylesheet" href="Styles/admin.css">
+<link rel="stylesheet" href="Styles/admin.css">
+
 <div class="main-content">
     <div class="top-navbar">
         <div class="search-bar">
@@ -35,7 +46,7 @@
                     <h3>0</h3>
                     <p>Registrados hoy</p>
                 </div>
-                <div class="card-footer">Última visita hace 1h</div>
+                <div class="card-footer">Ãšltima visita hace 1h</div>
             </div>
 
             <div class="card">
@@ -71,7 +82,7 @@
                     <h3>2</h3>
                     <p>Cuota actual</p>
                 </div>
-                <div class="card-footer">Vence en 3 días</div>
+                <div class="card-footer">Vence en 3 dÃ­as</div>
             </div>
         </div>
     </div>

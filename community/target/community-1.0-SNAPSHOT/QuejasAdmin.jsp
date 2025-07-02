@@ -1,9 +1,19 @@
 <%@page import="logica.QuejasAdmin"%>
+<%@page import="logica.Usuario"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
+
 <%
+    // Verifica si el usuario ha iniciado sesión
+    Usuario u = (Usuario) session.getAttribute("usuario");
+    if (u == null) {
+        response.sendRedirect("login.jsp?error=session_expired");
+        return;
+    }
+
     List<QuejasAdmin> quejas = (List<QuejasAdmin>) request.getAttribute("quejas");
 %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -1,7 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="logica.AlquilerZonasComunesEntity" %>
 <%@ include file="common/sidebarResidente.jsp" %>
-<%@ include file="common/header.jsp" %>
+<%@ include file="common/header.jsp" %> <!-- aquí ya no hay contentType duplicado -->
 
 <!DOCTYPE html>
 <html>
@@ -58,7 +58,6 @@
             } else {
         %>
             <form action="SvReservarZona" method="post">
-                <!-- Suponiendo que arrendatario es solo el ID en la sesión -->
                 <input type="hidden" name="idResidente" value="<%= usuario %>">
 
                 <label>Zona Común:</label>
