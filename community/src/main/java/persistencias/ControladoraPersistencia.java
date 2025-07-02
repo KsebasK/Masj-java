@@ -16,7 +16,7 @@ import logica.Apartamento;
 import logica.Usuario;
 import logica.Visitante;
 import persistencia.exceptions.NonexistentEntityException;
-import logica.QuejaResidente;
+import logica.QuejaEntity;
 import logica.Residente;
 
 public class ControladoraPersistencia {
@@ -152,15 +152,15 @@ public class ControladoraPersistencia {
    
     // ================= QUEJA =================
 
-public void crearQueja(QuejaResidente queja) {
+public void crearQueja(QuejaEntity queja) {
     quejaJpa.create(queja);
 }
 
-public List<QuejaResidente> traerQuejas() {
+public List<QuejaEntity> traerQuejas() {
     return quejaJpa.findQuejaAdminEntities();
 }
 
-public QuejaResidente buscarQueja(int id) {
+public QuejaEntity buscarQueja(int id) {
     return quejaJpa.findQuejaAdmin(id);
 }
 
@@ -172,7 +172,7 @@ public void borrarQueja(int id) {
     }
 }
 
-public void editarQueja(QuejaResidente queja) {
+public void editarQueja(QuejaEntity queja) {
     try {
         quejaJpa.edit(queja);
     } catch (Exception e) {

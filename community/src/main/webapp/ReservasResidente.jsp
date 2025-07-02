@@ -65,10 +65,7 @@
             <label>Cantidad de Personas:</label>
             <input type="number" name="cantidadPersonas" min="1" required><br><br>
 
-            <label>Total Pago:</label>
-            <input type="number" name="totalPago" min="0" required><br><br>
-            
-
+          
             <button type="submit" class="btn btn-primary">Reservar</button>
         </form>
     </div>
