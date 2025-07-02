@@ -13,16 +13,13 @@ public class QuejaService {
         q.setMotivoQueja(motivo);
         q.setEstadoQueja("Sin responder");
 
+        // Buscar las entidades completas desde la base de datos
+        Residente r = jpa.obtenerResidentePorId(idResidente);
+        Usuario a = jpa.obtenerAdministradorPorId(idAdmin);
 
-        Residente r = new Residente();
-        r.setIdResidente(idResidente);
         q.setResidente(r);
-
-        Usuario a = new Usuario();
-        a.setIdUsuario(idAdmin);
         q.setAdministrador(a);
 
         jpa.crearQueja(q);
     }
 }
-    
