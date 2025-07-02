@@ -22,6 +22,6 @@ public class SvEnviarQueja extends HttpServlet {
         }
 
         service.registrarQueja(motivo, idResidente, idAdministrador);
-        resp.sendRedirect("dashboardR.jsp");
+        resp.sendRedirect("residente.jsp");
     }
 }

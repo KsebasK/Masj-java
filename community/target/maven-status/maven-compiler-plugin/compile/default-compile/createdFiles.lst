@@ -47,6 +47,7 @@ Servlets\SvRegistrarVehiculo.class
 persistencias\exceptions\NonexistentEntityException.class
 persistencias\VehiculoJpaController.class
 logica\Apartamento.class
+logica\QuejasAdmin_.class
 persistencias\ResidenteJpaController.class
 persistencias\UsuarioJpaController.class
 Servlets\SvRegistrarVisitante.class
