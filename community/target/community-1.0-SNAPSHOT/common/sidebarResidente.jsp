@@ -16,8 +16,9 @@
             <li><a href="QuejasResidente.jsp" class="<%= currentPage.contains("QuejasResidente.jsp") ? "active" : "" %>">
                 <i class="fas fa-comment-alt"></i><span>Quejas</span></a></li>
            
-            <li><a href="login.jsp">
-                <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
+            <li><a href="<%= request.getContextPath() %>/SvLogout">
+    <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
+
                 
                 <%-- 
      <li><a href="notificaciones.jsp" class="<%= currentPage.contains("notificaciones.jsp") ? "active" : "" %>">

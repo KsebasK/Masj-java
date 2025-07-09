@@ -26,8 +26,9 @@
                 <i class="fas fa-car"></i><span>Vehículos</span></a></li>
             <li><a href="registrarVisitante.jsp" class="<%= currentPage.contains("registrarVisitante.jsp") ? "active" : "" %>">
                 <i class="fas fa-user-friends"></i><span>Visitantes</span></a></li>
-                <li><a href="login.jsp">
-                <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
+                <li><a href="<%= request.getContextPath() %>/SvLogout">
+    <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
+
                            </ul>
       
        

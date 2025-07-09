@@ -29,6 +29,7 @@ logica\QuejasAdmin.class
 logica\Vehiculo.class
 logica\AlquilerZonasComunes.class
 Servlets\SvResidente.class
+Servlets\SvLogout.class
 logica\ZonaComun.class
 persistencias\exceptions\IllegalOrphanException.class
 persistencias\ParqueaderoJpaController.class

@@ -33,8 +33,8 @@
                   
         <h3>Configuración</h3>
         <ul>
-            <li><a href="login.jsp" class="<%= currentPage.contains("login.jsp") ? "active" : "" %>">
-                <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
+            <li><a href="<%= request.getContextPath() %>/SvLogout">
+    <i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
         </ul>
     </div>
 </div>
